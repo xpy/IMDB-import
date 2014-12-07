@@ -9,8 +9,8 @@ fileEnd = '---------------------------------------------------------------------
 actors = []
 
 def addMovieToActorToDB(actor,movie):
-    print(movie)
-    print "INSERT INTO actor_to_movie (actor_id,movie_id) SELECT actor.id,movie.id FROM actor,movie WHERE actor.name = %s AND movie.name = %s AND movie.year_id = %s" % (actor,movie['name'],movie['year_id'])
+    # print(movie)
+    # print "INSERT INTO actor_to_movie (actor_id,movie_id) SELECT actor.id,movie.id FROM actor,movie WHERE actor.name = %s AND movie.name = %s AND movie.year_id = %s" % (actor,movie['name'],movie['year_id'])
     cur.execute("INSERT INTO actor_to_movie (actor_id,movie_id) SELECT actor.id,movie.id FROM actor,movie WHERE actor.name = %s AND movie.name = %s AND movie.year_id = %s AND NOT EXISTS (SELECT 1 FROM actor_to_movie WHERE actor_id = actor.id AND movie_id = movie.id ) ",[actor,movie['name'],movie['year_id']])
 
 def addActorsToMovies():

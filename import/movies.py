@@ -13,7 +13,7 @@ def addMovies():
     i = 0
     line = f.readline()
     while line:
-        movie = functions.getMovie(line)
+        movie = fungetMovie(line)
         if (movie != None):
             i += 1
             if i % 10000 == 0:
