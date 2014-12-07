@@ -5,32 +5,15 @@ import functions
 
 fileName = 'movies.list'
 f = open(variables.imdbFilesPath + fileName, 'r')
-movieRegEx = '\"*([^(")]*[^("|\s)])("|\s)*\(([^\)]*)'
 fileEnd = '-----------------------------------------------------------------------------'
 
-def getMovie(str):
-    str = str.decode('iso-8859-1').encode('utf8')
-    res = re.match(movieRegEx, str)
-    if res == None:
-        return None
-    ret = {'name': res.groups()[0], 'year_id': res.groups()[2], 'year': None}
-
-    # print res.groups()
-    # print str
-    # print ret
-
-    if ret['year_id'] != None:
-        ret['year'] = ret['year_id'].split('/')[0]
-        if (ret['year'] == None or not ret['year'].isdigit()):
-            ret['year'] = None
-    return ret
 
 
 def addMovies():
     i = 0
     line = f.readline()
     while line:
-        movie = getMovie(line)
+        movie = functions.getMovie(line)
         if (movie != None):
             i += 1
             if i % 10000 == 0:
