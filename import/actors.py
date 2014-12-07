@@ -1,10 +1,12 @@
 import re
 import psycopg2
 import  variables
+import functions
 
 fileName = 'actors.list'
 f = open(variables.imdbFilesPath + fileName, 'r')
 actors = []
+
 def getMovie(str):
     res = re.match('([^\(]*)\s\(([0-9]*)',str)
     return {'name':res.group(0),'year':res.group(1)}
@@ -40,33 +42,11 @@ def addActors():
             line = f.readline()
         if line.find('-----------------------------------------------------------------------------') >=0: return
 
-line = f.readline()
-while line.find('THE ACTORS LIST') <0:
-    line = f.readline()
-for i in range(0,4):
-    line = f.readline()
+functions.jumpToLineWithString(f,'THE ACTORS LIST')
+functions.jumpLines(f,4)
 
 conn = psycopg2.connect(variables.postgresCredentials)
 cur = conn.cursor()
 
 addActors()
 conn.commit()
-#
-#
-# parse()
-# parse()
-# parse()
-# parse()
-# parse()
-# parse()
-# parse()
-# parse()
-# parse()
-# parse()
-# parse()
-# parse()
-# parse()
-# parse()
-# parse()
-#
-# print actors
