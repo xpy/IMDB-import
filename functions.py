@@ -1,4 +1,5 @@
 import re
+import time
 
 
 def jumpLines(f, numOfLines):
@@ -56,7 +57,8 @@ def getMovie(str):
 def getMovieSplit(str):
     str = str.split()
     movieName = []
-    k= 0
+    k= 1
+    movieName.append(str[k])
     while k < len(str) - 1 and re.match('\(.*\)', str[k]) == None:
         movieName.append(str[k])
         k += 1
@@ -66,3 +68,12 @@ def getMovieSplit(str):
         if (ret['year'] == None or not ret['year'].isdigit()):
             ret['year'] = None
     return ret
+
+
+timers = {}
+def startTimer(name):
+    timers[name] = time.time()
+    print 'Starting "'+name+'"'
+
+def checkTimer(name):
+    print 'Ended "'+name +'" :' +str(  time.time() - timers[name])
