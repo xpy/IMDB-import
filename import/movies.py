@@ -35,13 +35,17 @@ functions.jumpLines(f,0)
 
 conn = psycopg2.connect(variables.postgresCredentials)
 cur = conn.cursor()
+
 cur.execute("CREATE TEMP TABLE tmp_movie(   name text,  year integer,  year_id text);")
+
 functions.startTimer('Add to tmp_table')
 addMovies()
 functions.checkTimer('Add to tmp_table')
+
 functions.startTimer('Insert to real table')
-cur.execute("INSERT INTO movie (name,year,year_id) (SELECT DISTINCT name,year,year_id FROM tmp_movie ORDER BY NAME)")
+cur.execute("INSERT INTO movie (name,year,year_id) (SELECT DISTINCT name,year,year_id FROM tmp_movie ORDER BY name)")
 functions.checkTimer('Insert to real table')
+
 functions.startTimer('Commit to DB')
 conn.commit()
 functions.checkTimer('Commit to DB')

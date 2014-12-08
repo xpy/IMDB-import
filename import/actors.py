@@ -6,30 +6,24 @@ import functions
 fileName = 'actors.list'
 f = open(variables.imdbFilesPath + fileName, 'r')
 fileEnd = '-----------------------------------------------------------------------------'
-actors = []
 
-
-def getMovie(str):
-    res = re.match('([^\(]*)\s\(([0-9]*)', str)
-    return {'name': res.group(0), 'year': res.group(1)}
+def insertActor(actor):
+    cur.execute("INSERT INTO tmp_actor (name) SELECT %s",[actor])
 
 def addActors():
     i = 0
     line = f.readline().decode('iso-8859-1').encode('utf8')
     while line:
-        splitLine = line.split('\t')
+        if line.find(fileEnd) >= 0: return
+        splitLine = line.decode('iso-8859-1').encode('utf8').split('\t')
         actor = splitLine[0]
         i += 1
         if i % 10000 == 0:
             print actor + ' ' + str(i)
-            conn.commit()
-
-        cur.execute("INSERT INTO actor (name) SELECT %s WHERE NOT EXISTS (SELECT 1 FROM actor WHERE name = %s)",
-                    [actor, actor])
+        insertActor(actor)
         line = f.readline()
         while line != '' and (len(line) == 1 or line[0] == '\t'):
             line = f.readline()
-        if line.find(fileEnd) >= 0: return
 
 
 functions.jumpToLineWithString(f, 'THE ACTORS LIST')
@@ -38,5 +32,16 @@ functions.jumpLines(f, 4)
 conn = psycopg2.connect(variables.postgresCredentials)
 cur = conn.cursor()
 
+cur.execute("CREATE TEMP TABLE tmp_actor(name text);")
+
+functions.startTimer('Add to tmp_table')
 addActors()
+functions.checkTimer('Add to tmp_table')
+
+functions.startTimer('Insert to real table')
+cur.execute("INSERT INTO actor (name) (SELECT DISTINCT name FROM tmp_actor ORDER BY name)")
+functions.checkTimer('Insert to real table')
+
+functions.startTimer('Commit to DB')
 conn.commit()
+functions.checkTimer('Commit to DB')
