@@ -1,5 +1,6 @@
 import re
 import time
+import math
 
 
 def jumpLines(f, numOfLines):
@@ -52,17 +53,16 @@ def getMovie(str):
     return ret
 
 
-
-
 def getMovieSplit(str):
     str = str.split()
     movieName = []
-    k= 1
-    movieName.append(str[k])
-    while k < len(str) - 1 and re.match('\(.*\)', str[k]) == None:
+    movieName.append(str[0])
+    k=1
+    while k < len(str) - 1 and re.match('\([0-9\/IVXC\?]*\)', str[k]) == None:
         movieName.append(str[k])
         k += 1
-    ret = {'name':' '.join(movieName).replace('"', ''),'year_id':str[k].replace('(', '').replace(')', ''),'year':None}
+    ret = {'name': ' '.join(movieName).replace('"', ''), 'year_id': str[k].replace('(', '').replace(')', ''),
+           'year': None}
     if ret['year_id'] != None:
         ret['year'] = ret['year_id'].split('/')[0]
         if (ret['year'] == None or not ret['year'].isdigit()):
@@ -71,9 +71,35 @@ def getMovieSplit(str):
 
 
 timers = {}
+
+
 def startTimer(name):
     timers[name] = time.time()
-    print 'Starting "'+name+'"'
+    print '---Starting "' + name + '"'
+
 
 def checkTimer(name):
-    print 'Ended "'+name +'" :' +str(  time.time() - timers[name])
+    print '---Ended "' + name + '" :' + readableTime(time.time() - timers[name])
+
+
+def analyzedTime(time):
+    t = {}
+    t['hours'] = int(math.floor(time / 3600))
+    time %= 3600
+    t['minutes'] = int(math.floor(time / 60))
+    time %= 60
+    t['seconds'] = int(math.floor(time))
+    time = time - t['seconds']
+    t['milliseconds'] = int(time * 1000)
+    return t
+
+def readableTime(rTime):
+    t = analyzedTime(rTime)
+    ret = str(t['hours']) + ' Hours, '
+    ret += str(t['minutes']) + ' Minutes, '
+    ret += str(t['seconds']) + ' Seconds and '
+    ret += str(t['milliseconds']) + ' Milliseconds '
+    return ret
+
+
+
