@@ -3,12 +3,12 @@ import psycopg2
 import variables
 import functions
 
-fileName = 'actors.list'
+fileName = 'actresses.list'
 f = open(variables.imdbFilesPath + fileName, 'r')
 fileEnd = '-----------------------------------------------------------------------------'
 
 def insertActor(actor):
-    cur.execute("INSERT INTO tmp_actor (name,gender) SELECT %s,'m'",[actor])
+    cur.execute("INSERT INTO tmp_actor (name,gender) SELECT %s,'f'",[actor])
 
 def addActors():
     i = 0
@@ -26,7 +26,7 @@ def addActors():
             line = f.readline()
 
 
-functions.jumpToLineWithString(f, 'THE ACTORS LIST')
+functions.jumpToLineWithString(f, 'THE ACTRESSES LIST')
 functions.jumpLines(f, 4)
 
 conn = psycopg2.connect(variables.postgresCredentials)
