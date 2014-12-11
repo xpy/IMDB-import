@@ -3,7 +3,7 @@ import psycopg2
 import variables
 import functions
 
-fileName = 'actors.list'
+fileName = 'actress.list'
 f = open(variables.imdbFilesPath + fileName, 'r')
 fileEnd = '-----------------------------------------------------------------------------'
 actors = []
@@ -57,7 +57,7 @@ def addActorsToMovies():
         if line.find(fileEnd) >= 0: return
 
 
-functions.jumpToLineWithString(f, 'THE ACTORS LIST')
+functions.jumpToLineWithString(f, 'THE ACTRESSES LIST')
 functions.jumpLines(f, 4)
 # 236
 # functions.jumpLines(f,  2117917 -240 )

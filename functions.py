@@ -16,48 +16,58 @@ def jumpToLineWithString(f, str):
         line = f.readline()
 
 
-movieRegEx = '\"*(\(*.*\)*[^(")]*[^("|\s)])("|\s)*\(([^\)]*)'
+movieRegEx = '((\s+\(([^\(\)]+)\))*(\s+\{([^\{\}]+)\})*(\s+\{\{([^\{\}]+)\}\})*(\s+\(([^\(\)]+)\))*(\s+\[([^\[\]]+)\])*(\s+\<([^\<\>]+)\>)*)$'
+
+
+def wrapRegEx(l, r):
+    return '\s+' + l + '([^' + r + l +']*)' + r + '$'
+
+
+def getFromEnd(l, r, str):
+    # print wrapRegEx(l, r)
+    ret = re.search(wrapRegEx(l, r), str)
+    return None if ret == None else ret.groups()[0]
+
+
+def removeFromEnd(l, r, str):
+    return re.sub(wrapRegEx(l, r), '', str)
 
 
 def getMovie(str):
     debug = False
-    str = str.decode('iso-8859-1').encode('utf8')[:-1]
     if debug: print("Starting String: " + str)
-    str = re.sub('\s*\<[^\>]*\>$', '', str)
-    if debug: print('remove ^: ' + str)
-    str = re.sub('\s*\[[^\]]*\]$', '', str)
+    movie = {}
+
+    movie['billingPosition'] = getFromEnd('\<', '\>', str)
+    str = removeFromEnd('\<', '\>', str)
+    if debug: print('remove <: ' + str)
+
+    movie['roles'] = getFromEnd('\[', '\]', str)
+    str = removeFromEnd('\[', '\]', str)
     if debug: print('remove [: ' + str + '?')
-    str = re.sub('\s*\(as[^\)]*\)$', '', str)
+
+    movie['creditsName'] = getFromEnd('\(as', '\)', str)
+    str = removeFromEnd('\(as', '\)', str)
     if debug: print('remove (as: ' + str + '?')
-    str = re.sub('\s*\{[^\}]*\}$', '', str)
+
+    movie['episodeName'] = getFromEnd('\{', '\}', str)
+    str = removeFromEnd('\{', '\}', str)
     if debug: print('remove {: ' + str + '?')
-    str = re.sub('\s*\{[^\}]*\}\}$', '', str)
+
+    str = re.sub('\s+\{[^\}]*\}\}$', '', str)
     if debug: print('remove {{: ' + str + '?')
-    year = re.search('\s*\(([^\)]*)\)$', str)
-    if debug: print('remove (: ' + str + '?')
-    str = re.sub('\s*\([^\)]*\)$', '', str)
-    if debug: print "year.groups()"
-    if debug: print year.groups()
-    if str == None:
-        return None
-    ret = {'name': str, 'year_id': year.groups()[0], 'year': None}
 
-    # print res.groups()
-    # print str
-    # print ret
-
-    if ret['year_id'] != None:
-        ret['year'] = ret['year_id'].split('/')[0]
-        if (ret['year'] == None or not ret['year'].isdigit()):
-            ret['year'] = None
-    return ret
+    str = re.sub('\s+\(([TV]*)\)$', '', str)
+    if debug: print('remove {{: ' + str + '?')
+    return dict(movie.items() + getMovieSplit(str).items())
 
 
 def getMovieSplit(str):
+    # print(str)
     str = str.split()
     movieName = []
     movieName.append(str[0])
-    k=1
+    k = 1
     while k < len(str) - 1 and re.match('\([0-9\/IVXC\?]*\)', str[k]) == None:
         movieName.append(str[k])
         k += 1
@@ -79,7 +89,7 @@ def startTimer(name):
 
 
 def checkTimer(name):
-    print '---Ended "' + name + '" :' + readableTime(time.time() - timers[name])
+    print '---Checking "' + name + '" :' + readableTime(time.time() - timers[name])
 
 
 def analyzedTime(time):
@@ -92,6 +102,7 @@ def analyzedTime(time):
     time = time - t['seconds']
     t['milliseconds'] = int(time * 1000)
     return t
+
 
 def readableTime(rTime):
     t = analyzedTime(rTime)
