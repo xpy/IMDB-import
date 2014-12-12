@@ -16,7 +16,7 @@ def jumpToLineWithString(f, str):
         line = f.readline()
 
 
-movieRegEx = '((\s+\(([^\(\)]+)\))*(\s+\{([^\{\}]+)\})*(\s+\{\{([^\{\}]+)\}\})*(\s+\(([^\(\)]+)\))*(\s+\[([^\[\]]+)\])*(\s+\<([^\<\>]+)\>)*)$'
+movieRegEx = '((\s+\(([0-9\/IVXC\?]*)\)){0,1}(\s+\((TV|V)\))*(\s+\{([^\{\}]+)\})*(\s+\{\{([^\{\}]+)\}\})*(\s+\(([^\(\)]+)\)){0,1}(\s+\(([^\(\)]+)\)){0,1}(\s+\[([^\[\]]+)\])*(\s+\<([^\<\>]+)\>)*)$'
 
 
 def wrapRegEx(l, r):
@@ -32,7 +32,7 @@ def getFromEnd(l, r, str):
 def removeFromEnd(l, r, str):
     return re.sub(wrapRegEx(l, r), '', str)
 
-
+"""
 def getMovie(str):
     debug = False
     if debug: print("Starting String: " + str)
@@ -59,6 +59,27 @@ def getMovie(str):
 
     str = re.sub('\s+\(([TV]*)\)$', '', str)
     if debug: print('remove {{: ' + str + '?')
+    return dict(movie.items() + getMovieSplit(str).items())
+"""
+def getMovie(str):
+    debug = False
+    if debug: print("Starting String: " + str)
+    movie = {}
+    reg = re.search(movieRegEx,str)
+    groups = (reg.groups())
+    # print groups[2],groups[4],groups[6],groups[8],groups[10],groups[12]
+
+    movie['billingPosition'] = groups[16]
+    movie['roles'] = groups[14]
+    movie['creditsName'] = groups[12]
+    movie['comments'] = groups[10]
+    movie['suspended'] = groups[8]
+    movie['episodeName'] =  groups[6]
+    movie['tv'] =  groups[4]
+
+    # print(movie)
+    # str = re.sub(movieRegEx, '', str)
+
     return dict(movie.items() + getMovieSplit(str).items())
 
 
