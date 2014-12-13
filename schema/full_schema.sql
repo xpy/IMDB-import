@@ -543,12 +543,9 @@ CREATE VIEW "VW_movie" AS
     movie.year_id,
     movie.rating,
     movie.votes
-   FROM movie
-  WHERE (NOT (EXISTS ( SELECT 1
-           FROM genre_to_movie
-          WHERE ((genre_to_movie.movie_id = movie.id) AND (genre_to_movie.genre_id IN ( SELECT genre.id
-                   FROM genre
-                  WHERE (genre.is_movie_genre = false)))))));
+   FROM ((movie
+     JOIN genre_to_movie ON ((movie.id = genre_to_movie.movie_id)))
+     JOIN genre ON (((genre.id = genre_to_movie.genre_id) AND (genre.is_movie_genre = true))));
 
 
 ALTER TABLE public."VW_movie" OWNER TO postgres;
