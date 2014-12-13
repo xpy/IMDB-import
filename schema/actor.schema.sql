@@ -6,8 +6,9 @@ CREATE TABLE actor
 (
   id integer NOT NULL DEFAULT nextval('actors_id_seq'::regclass),
   name text,
+  gender "char",
   CONSTRAINT actor_id PRIMARY KEY (id),
-  CONSTRAINT actor_name UNIQUE (name)
+  CONSTRAINT "UC_actor__name__gender" UNIQUE (name, gender)
 )
 WITH (
   OIDS=FALSE
@@ -25,12 +26,12 @@ CREATE UNIQUE INDEX "IX_actor__id"
   (id);
 ALTER TABLE actor CLUSTER ON "IX_actor__id";
 
--- Index: "IX_actor__name"
+-- Index: "IX_actor__name__gender"
 
--- DROP INDEX "IX_actor__name";
+-- DROP INDEX "IX_actor__name__gender";
 
-CREATE UNIQUE INDEX "IX_actor__name"
+CREATE UNIQUE INDEX "IX_actor__name__gender"
   ON actor
   USING btree
-  (name COLLATE pg_catalog."default");
+  (name COLLATE pg_catalog."default", gender);
 

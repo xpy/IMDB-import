@@ -1,34 +1,51 @@
--- Table: actor_to_movie
+-- Table: genre
 
--- DROP TABLE actor_to_movie;
+-- DROP TABLE genre;
 
-CREATE TABLE actor_to_movie
+CREATE TABLE genre
 (
-  id serial NOT NULL,
-  actor_id integer,
-  movie_id integer,
-  CONSTRAINT "PK_actor_to_movie__id" PRIMARY KEY (id),
-  CONSTRAINT "FK_actor_to_movie__actor_id" FOREIGN KEY (actor_id)
-      REFERENCES actor (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE CASCADE,
-  CONSTRAINT "FK_actor_to_movie__movie_id" FOREIGN KEY (movie_id)
-      REFERENCES movie (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE CASCADE,
-  CONSTRAINT "UC_actor_to_movie__actor_id__movie_id" UNIQUE (actor_id, movie_id)
+  id smallserial NOT NULL,
+  name text,
+  is_movie_genre boolean,
+  CONSTRAINT "PK_genre__id" PRIMARY KEY (id),
+  CONSTRAINT "UC_genre__name" UNIQUE (name)
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE actor_to_movie
+ALTER TABLE genre
   OWNER TO postgres;
+COMMENT ON TABLE genre
+  IS 'UPDATE genre set is_movie_genre = true where name in (
+''Action'',''Comedy'',
+''Fantasy'',''Musical'',
+''Short'',''Adventure'',
+''Crime'',''Family'',
+''Mystery'',''Thriller'',
+''Adult'',''Documentary'',
+''Film-Noir'',''Romance'',
+''War'',''Animation'',
+''Drama'',''Horror'',
+''Sci-Fi'',''Western''
+)
+';
 
--- Index: "IX_actor_to_movie__actor_id__movie_id"
+-- Index: "IX_genre__id"
 
--- DROP INDEX "IX_actor_to_movie__actor_id__movie_id";
+-- DROP INDEX "IX_genre__id";
 
-CREATE UNIQUE INDEX "IX_actor_to_movie__actor_id__movie_id"
-  ON actor_to_movie
+CREATE UNIQUE INDEX "IX_genre__id"
+  ON genre
   USING btree
-  (actor_id, movie_id);
-ALTER TABLE actor_to_movie CLUSTER ON "IX_actor_to_movie__actor_id__movie_id";
+  (id);
+
+-- Index: "IX_genre__name"
+
+-- DROP INDEX "IX_genre__name";
+
+CREATE UNIQUE INDEX "IX_genre__name"
+  ON genre
+  USING btree
+  (name COLLATE pg_catalog."default");
+ALTER TABLE genre CLUSTER ON "IX_genre__name";
 
