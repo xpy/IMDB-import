@@ -21,7 +21,7 @@ movieRegEx = '((\s+\(([0-9\/IVXC\?]*)\)){0,1}(\s+\((TV|V)\))*(\s+\{([^\{\}]+)\})
 
 
 def wrapRegEx(l, r):
-    return '\s+' + l + '([^' + r + l +']*)' + r + '$'
+    return '\s+' + l + '([^' + r + l + ']*)' + r + '$'
 
 
 def getFromEnd(l, r, str):
@@ -32,6 +32,7 @@ def getFromEnd(l, r, str):
 
 def removeFromEnd(l, r, str):
     return re.sub(wrapRegEx(l, r), '', str)
+
 
 """
 def getMovie(str):
@@ -62,11 +63,13 @@ def getMovie(str):
     if debug: print('remove {{: ' + str + '?')
     return dict(movie.items() + getMovieSplit(str).items())
 """
+
+
 def getMovie(str):
     debug = False
     if debug: print("Starting String: " + str)
     movie = {}
-    reg = re.search(movieRegEx,str)
+    reg = re.search(movieRegEx, str)
     groups = (reg.groups())
     # print groups[2],groups[4],groups[6],groups[8],groups[10],groups[12]
 
@@ -75,8 +78,8 @@ def getMovie(str):
     movie['creditsName'] = groups[12]
     movie['comments'] = groups[10]
     movie['suspended'] = groups[8]
-    movie['episodeName'] =  groups[6]
-    movie['tv'] =  groups[4]
+    movie['episodeName'] = groups[6]
+    movie['tv'] = groups[4]
 
     # print(movie)
     # str = re.sub(movieRegEx, '', str)
@@ -84,38 +87,53 @@ def getMovie(str):
     return dict(movie.items() + getMovieSplit(str).items())
 
 
-def getMovieSplit(str):
+def getMovieSplit(str, p=False):
     # print(str)
     str = str.split()
     movieName = []
     movieName.append(str[0])
     k = 1
-    while k < len(str) - 1 and re.match('\([0-9\/IVXC\?]*\)', str[k]) == None:
+    while k < len(str) and re.match('\(([0-9]{4}|[\?]{4})+(\/[IVXC]*)*\)', str[k]) == None:
         movieName.append(str[k])
         k += 1
-    ret = {'name': ' '.join(movieName).replace('"', ''), 'year_id': str[k].replace('(', '').replace(')', ''),
+    ret = {'name': ' '.join(movieName).replace('"', ''), 'year_id': None,
            'year': None}
-    if ret['year_id'] != None:
-        ret['year'] = ret['year_id'].split('/')[0]
-        if (ret['year'] == None or not ret['year'].isdigit()):
+    year_id = str[k].replace('(', '').replace(')', '')
+    if year_id == '????':
+        year_id = None
+    if year_id is not None:
+        yearSplit = year_id.split('/')
+        ret['year'] = yearSplit[0]
+        if ret['year'] is None or not ret['year'].isdigit():
             ret['year'] = None
+        if p: print  yearSplit;
+        if len(yearSplit) > 1:
+            if yearSplit[-1] == '????':
+                ret['year_id'] = None
+            elif yearSplit[-1].isdigit():
+                ret['year_id'] = yearSplit[-1]
+            else:
+                ret['year_id'] = roman.fromRoman(yearSplit[-1])
     return ret
+
 
 actorRegEx = '([^,]*),?\s?([^\(]*).?\(?([^\(\)]*)'
 
+
 def getActor(actor):
-    reg = re.search(actorRegEx,actor)
+    reg = re.search(actorRegEx, actor)
     groups = reg.groups()
     # print groups
     ret = {}
     ret['fname'] = groups[0]
     ret['lname'] = groups[1]
     ret['name_id'] = groups[2]
-    if(len(ret['name_id'])):
+    if (len(ret['name_id'])):
         ret['name_id'] = roman.fromRoman(ret['name_id'].upper())
     else:
         ret['name_id'] = None
     return ret
+
 
 timers = {}
 
@@ -149,12 +167,12 @@ def readableTime(rTime):
     ret += str(t['milliseconds']) + ' Milliseconds '
     return ret
 
-def resetTable(cur,table):
-    cur.execute("TRUNCATE "+table+" CASCADE;")
-    cur.execute("ALTER SEQUENCE "+table+"_id_seq RESTART WITH 1;")
+
+def resetTable(cur, table):
+    cur.execute("TRUNCATE " + table + " CASCADE;")
+    cur.execute("ALTER SEQUENCE " + table + "_id_seq RESTART WITH 1;")
 
 
-
-def beep(num = 1):
-    for i in range(0,num):
+def beep(num=1):
+    for i in range(0, num):
         print "\a"
