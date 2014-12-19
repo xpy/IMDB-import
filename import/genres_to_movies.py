@@ -28,7 +28,7 @@ def addGenresToMovies():
 
         movie = functions.getMovieSplit(line[0])
         genre = line[-1].replace('\n', '')
-        if (movie['name'] <> prevMovie['name'] and movie['year_id'] <> prevMovie['year_id'] and genre <> prevGenre ):
+        if ( movie['name'] <> prevMovie['name'] or movie['year_id'] <> prevMovie['year_id'] or genre <> prevGenre ):
             insertGenreToMovie(genre, movie)
             i += 1
             prevMovie = movie

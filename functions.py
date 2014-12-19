@@ -1,6 +1,7 @@
 import re
 import time
 import math
+import roman
 
 
 def jumpLines(f, numOfLines):
@@ -100,6 +101,21 @@ def getMovieSplit(str):
             ret['year'] = None
     return ret
 
+actorRegEx = '([^,]*),?\s?([^\(]*).?\(?([^\(\)]*)'
+
+def getActor(actor):
+    reg = re.search(actorRegEx,actor)
+    groups = reg.groups()
+    # print groups
+    ret = {}
+    ret['fname'] = groups[0]
+    ret['lname'] = groups[1]
+    ret['name_id'] = groups[2]
+    if(len(ret['name_id'])):
+        ret['name_id'] = roman.fromRoman(ret['name_id'].upper())
+    else:
+        ret['name_id'] = None
+    return ret
 
 timers = {}
 
@@ -133,5 +149,12 @@ def readableTime(rTime):
     ret += str(t['milliseconds']) + ' Milliseconds '
     return ret
 
+def resetTable(cur,table):
+    cur.execute("TRUNCATE "+table+" CASCADE;")
+    cur.execute("ALTER SEQUENCE "+table+"_id_seq RESTART WITH 1;")
 
 
+
+def beep(num = 1):
+    for i in range(0,num):
+        print "\a"
