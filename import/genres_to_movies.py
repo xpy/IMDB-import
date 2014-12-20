@@ -18,17 +18,14 @@ def insertGenreToMovie(genre, movie):
 def addGenresToMovies():
     i = 0
     line = f.readline().decode('iso-8859-1').encode('utf8').split('\t')
-    movie = functions.getMovieSplit(line[0])
-    genre = line[-1].replace('\n', '')
     prevMovie = {'name': None, 'year_id': None}
     prevGenre = None
     while line[0] != '':
-        if i % 1000 == 0:
-            print(movie, i)
-
         movie = functions.getMovieSplit(line[0])
         genre = line[-1].replace('\n', '')
-        if ( movie['name'] <> prevMovie['name'] or movie['year_id'] <> prevMovie['year_id'] or genre <> prevGenre ):
+        if i % 1000 == 0:
+            print(movie, i)
+        if movie['name'] <> prevMovie['name'] or movie['year_id'] <> prevMovie['year_id'] or genre <> prevGenre:
             insertGenreToMovie(genre, movie)
             i += 1
             prevMovie = movie

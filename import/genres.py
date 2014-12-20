@@ -25,6 +25,8 @@ functions.jumpLines(f,1)
 conn = psycopg2.connect(variables.postgresCredentials)
 cur = conn.cursor()
 
+functions.resetTable(cur, 'genre')
+
 cur.execute("CREATE TEMP TABLE tmp_genre( name text );")
 
 functions.startTimer('Add genres to tmp_table')

@@ -18,13 +18,9 @@ def addMovies():
     line = f.readline().decode('iso-8859-1').encode('utf8')
     prevMovie = {'name':None,'year':None,'year_id':None}
     while line:
-        # if i > 1210000:
-        #     print line
-
         movie = functions.getMovieSplit(line)
         if (movie != None):
             i += 1
-
             if i % 10000 == 0:
                 print movie['name'] + ' - ' + str(i)
         if prevMovie['name'] != movie['name'] or prevMovie['year'] != movie['year'] or prevMovie['year_id'] != movie['year_id']:
