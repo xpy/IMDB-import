@@ -121,17 +121,27 @@ actorRegEx = '([^,]*),?\s?([^\(]*).?\(?([^\(\)]*)'
 
 
 def getActor(actor):
-    reg = re.search(actorRegEx, actor)
-    groups = reg.groups()
+    tmpactor = actor
+    name_id = re.search('\([IVXC]*\)', actor)
+    if name_id is not None and len(name_id.group()):
+        name_id = name_id.group()
+    else:
+        name_id = None
+    if name_id is not None:
+        actor = actor.replace(name_id,'')
+    actor= actor.strip().split(', ')
+
+    # reg = re.search(actorRegEx, actor)
+    # groups = reg.groups()
     # print groups
     ret = {}
-    ret['fname'] = groups[0]
-    ret['lname'] = groups[1]
-    ret['name_id'] = groups[2]
-    if (len(ret['name_id'])):
-        ret['name_id'] = roman.fromRoman(ret['name_id'].upper())
-    else:
-        ret['name_id'] = None
+    ret['lname'] = actor[0]
+    ret['fname'] = actor[1] if len(actor)>1 else None
+    ret['name_id'] = name_id
+    if (ret['name_id'] is not None):
+        ret['name_id'] = roman.fromRoman(ret['name_id'].strip('()').upper())
+    # print(tmpactor)
+    # print(ret)
     return ret
 
 
@@ -176,3 +186,13 @@ def resetTable(cur, table):
 def beep(num=1):
     for i in range(0, num):
         print "\a"
+
+
+''' Used to read Actors from File that was created for SQL use '''
+def getTop100Actors():
+    actorsFile = open('../assets/TOP1000Actors.txt')
+    actors = actorsFile.readline().decode("utf-8-sig").encode("utf-8").strip('()').split('),(')
+    return [actor.strip("'") for actor in actors]
+
+def readFileLine(f):
+    return f.readline().decode('iso-8859-1').encode('utf8')

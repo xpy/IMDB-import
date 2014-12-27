@@ -12,8 +12,8 @@ def insertName(name):
 
 def insertActor(actor):
     actor = functions.getActor(actor)
-    # insertName(actor['fname'])
-    # insertName(actor['lname'])
+    insertName(actor['fname'])
+    insertName(actor['lname'])
     cur.execute("INSERT INTO tmp_actor (fname_id,lname_id,name_index,gender) SELECT fname.id,lname.id,%s,'m'"
                 " FROM actor_name fname, actor_name lname where fname.name = %s and lname.name = %s",[actor['name_id'],actor['fname'],actor['lname']])
 
@@ -44,7 +44,9 @@ conn = psycopg2.connect(variables.postgresCredentials)
 cur = conn.cursor()
 
 functions.resetTable(cur,'actor')
-# functions.resetTable(cur,'actor_name')
+functions.resetTable(cur,'actor_name')
+
+cur.execute("SET transform_null_equals TO ON")
 
 cur.execute("DROP TABLE tmp_actor;")
 cur.execute("CREATE UNLOGGED TABLE tmp_actor(fname_id int,lname_id int,name_index smallint,gender char);")
