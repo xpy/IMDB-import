@@ -25,7 +25,7 @@ aS'Downey Jr., Robert'
 p12
 aS'Cruise, Tom'
 p13
-aS'Seymour Hoffman, Philip'
+aS'Hoffman, Philip Seymour'
 p14
 aS'Hoffman, Dustin'
 p15
@@ -211,9 +211,9 @@ aS'Kingsley, Ben'
 p105
 aS'Gable, Clark'
 p106
-aS'Lee Jones, Tommy'
+aS'Jones, Tommy Lee'
 p107
-aS'L. Jackson, Samuel'
+aS'Jackson, Samuel L.'
 p108
 aS'Damon, Matt'
 p109
@@ -223,7 +223,7 @@ aS'Heston, Charlton'
 p111
 aS'Plummer, Christopher'
 p112
-aS'C. Scott, George'
+aS'Scott, George C.'
 p113
 aS'Walken, Christopher'
 p114
@@ -277,7 +277,7 @@ aS'Shearer, Norma'
 p138
 aS'Midler, Bette'
 p139
-aS'Tyler Moore, Mary'
+aS'Moore, Mary Tyler'
 p140
 aS'Magnani, Anna'
 p141
@@ -417,7 +417,7 @@ aS'Farrell, Colin'
 p208
 aS'Holden, William'
 p209
-aS'G. Robinson, Edward'
+aS'Robinson, Edward G.'
 p210
 aS'Powell, William'
 p211
@@ -523,7 +523,7 @@ aS'Irons, Jeremy'
 p261
 aS'Hurt, William'
 p262
-aS'Murray Abraham, F.'
+aS'Abraham, F. Murray'
 p263
 aS'Dreyfuss, Richard'
 p264
@@ -549,7 +549,7 @@ aS'Brynner, Yul'
 p274
 aS'Borgnine, Ernest'
 p275
-aS'Grace Moretz, Chlo\xc3\xab'
+aS'Moretz, Chlo\xc3\xab Grace'
 p276
 aS'Kendrick, Anna'
 p277
@@ -593,7 +593,7 @@ aS'Walters, Julie'
 p296
 aS'Mara, Rooney'
 p297
-aS'Lee Curtis, Jamie'
+aS'Curtis, Jamie Lee'
 p298
 aS'Stone, Emma'
 p299
@@ -689,7 +689,7 @@ aS'Louis-Dreyfus, Julia'
 p344
 aS'Thirlby, Olivia'
 p345
-aS'Pen\xc3\xa9lope Cruz, Cher'
+aS'Cruz, Pen\xc3\xa9lope'
 p346
 aS'Fletcher, Louise'
 p347
@@ -697,7 +697,7 @@ aS'Christie, Julie'
 p348
 aS'Neal, Patricia'
 p349
-aS'S. Ngor, Haing'
+aS'Ngor, Haing S.'
 p350
 aS'Gossett Jr., Louis'
 p351
@@ -777,7 +777,7 @@ aS'Spencer, Octavia'
 p388
 aS'Leo, Melissa'
 p389
-aS"Marlee Matlin, Mo'Nique"
+aS"Matlin, Mo'Nique Marlee"
 p390
 aS'Swinton, Tilda'
 p391
@@ -785,7 +785,7 @@ aS'Hudson, Jennifer'
 p392
 aS'Zellweger, Ren\xc3\xa9e'
 p393
-aS'Gay Harden, Marcia'
+aS'Harden, Marcia Gay'
 p394
 aS'Paquin, Anna'
 p395
@@ -889,7 +889,7 @@ aS'Malone, Dorothy'
 p444
 aS'Van Fleet, Jo'
 p445
-aS'Marie Saint, Eva'
+aS'Saint, Eva Marie'
 p446
 aS'Grahame, Gloria'
 p447
@@ -943,7 +943,7 @@ aS'Hemsworth, Liam'
 p471
 aS'Shatner, William'
 p472
-aS'Rukh Khan, Shah'
+aS'Khan, Shah Rukh'
 p473
 aS'Birch, Thora'
 p474
@@ -1099,7 +1099,7 @@ aS'Fonda, Peter'
 p549
 aS'Harrelson, Woody'
 p550
-aS'Bob Thornton, Billy'
+aS'Thornton, Billy Bob'
 p551
 aS'Elba, Idris'
 p552
@@ -1117,7 +1117,7 @@ aS'Harris, Richard'
 p558
 aS'Branagh, Kenneth'
 p559
-aS'James Olmos, Edward'
+aS'Olmos, Edward James'
 p560
 aS'von Sydow, Max'
 p561
@@ -1205,7 +1205,7 @@ aS'Br\xc3\xbchl, Daniel'
 p602
 aS'Gandolfini, James'
 p603
-aS'B. Jordan, Michael'
+aS'Jordan, Michael B.'
 p604
 aS'Perkins, Anthony'
 p605
@@ -1251,7 +1251,7 @@ aS'Moss, Carrie-Anne'
 p625
 aS'Leigh, Janet'
 p626
-aS'Sandino Moreno, Catalina'
+aS'Moreno, Catalina Sandino'
 p627
 aS'Morton, Samantha'
 p628
@@ -1297,7 +1297,7 @@ aS'Mason, Marsha'
 p648
 aS'Highmore, Freddie'
 p649
-aS'J. Fox, Michael'
+aS'Fox, Michael J.'
 p650
 aS'Murphy, Eddie'
 p651
@@ -1317,7 +1317,7 @@ aS'Rockwell, Sam'
 p658
 aS'Shimura, Takashi'
 p659
-aS'E. Grant, Richard'
+aS'Grant, Richard E.'
 p660
 aS'Nielsen, Leslie'
 p661
@@ -1333,7 +1333,7 @@ aS'Guest, Christopher'
 p666
 aS'Rickman, Alan'
 p667
-aS'Earle Haley, Jackie'
+aS'Haley, Jackie Earle'
 p668
 aS'Clift, Montgomery'
 p669
@@ -1355,7 +1355,7 @@ aS'Blonsky, Nikki'
 p677
 aS'Quinlan, Kathleen'
 p678
-aS'P. Henson, Taraji'
+aS'Henson, Taraji P.'
 p679
 aS'Ryan, Amy'
 p680
@@ -1457,11 +1457,11 @@ aS'Fisher, Carrie'
 p728
 aS'Grier, Pam'
 p729
-aS'Emily Browning, Bj\xc3\xb6rk'
+aS'Browning, Bj\xc3\xb6rk Emily'
 p730
 aS'Lewis, Juliette'
 p731
-aS'Jessica Parker, Sarah'
+aS'Parker, Sarah Jessica'
 p732
 aS'Laurie, Piper'
 p733
@@ -1503,7 +1503,7 @@ aS'Dillon, Matt'
 p751
 aS'Alda, Alan'
 p752
-aS'Haden Church, Thomas'
+aS'Church, Thomas Haden'
 p753
 aS'Owen, Clive'
 p754
@@ -1511,11 +1511,11 @@ aS'Watanabe, Ken'
 p755
 aS'Sharma, Suraj'
 p756
-aS'C. Reilly, John'
+aS'Reilly, John C.'
 p757
-aS'Clarke Duncan, Michael'
+aS'Duncan, Michael Clarke'
 p758
-aS'Joel Osment, Haley'
+aS'Osment, Haley Joel'
 p759
 aS'Kinnear, Greg'
 p760
@@ -1525,7 +1525,7 @@ aS'Forster, Robert'
 p762
 aS'Schwartzman, Jason'
 p763
-aS'H. Macy, William'
+aS'Macy, William H.'
 p764
 aS'Mueller-Stahl, Armin'
 p765
@@ -1603,7 +1603,7 @@ aS'Rock, Chris'
 p801
 aS'Hamm, Jon'
 p802
-aS'Patrick Harris, Neil'
+aS'Harris, Neil Patrick'
 p803
 aS'Sheen, Charlie'
 p804
@@ -1649,7 +1649,7 @@ aS'Romijn, Rebecca'
 p824
 aS'Rodriguez, Michelle'
 p825
-aS'Michelle Gellar, Sarah'
+aS'Gellar, Sarah Michelle'
 p826
 aS'Knowles, Beyonc\xc3\xa9'
 p827
@@ -1671,7 +1671,7 @@ aS'Larter, Ali'
 p835
 aS'Bosworth, Kate'
 p836
-aS'Rachel Wood, Evan'
+aS'Wood, Evan Rachel'
 p837
 aS'Horn, Cody'
 p838
@@ -1733,7 +1733,7 @@ aS'Brosnan, Pierce'
 p866
 aS'Bean, Sean'
 p867
-aS'the Entertainer, Cedric'
+aS'Entertainer, Cedric the'
 p868
 aS'Lautner, Taylor'
 p869
@@ -1747,7 +1747,7 @@ aS'Pinto, Freida'
 p873
 aS'Duff, Hilary'
 p874
-aS'Elizabeth Winstead, Mary'
+aS'Winstead, Mary Elizabeth'
 p875
 aS'Coolidge, Jennifer'
 p876
@@ -1771,11 +1771,11 @@ aS'Silverstone, Alicia'
 p885
 aS'Huntington-Whiteley, Rosie'
 p886
-aS'Evangeline Lilly, Madonna'
+aS'Lilly, Madonna Evangeline'
 p887
 aS'Panettiere, Hayden'
 p888
-aS'Love Hewitt, Jennifer'
+aS'Hewitt, Jennifer Love'
 p889
 aS'Rossum, Emmy'
 p890
@@ -1831,7 +1831,7 @@ aS'Kilmer, Val'
 p915
 aS'Brand, Russell'
 p916
-aS'T. Nelson, Craig'
+aS'Nelson, Craig T.'
 p917
 aS'Mac, Bernie'
 p918
@@ -1845,7 +1845,7 @@ aS'Quaid, Randy'
 p922
 aS'Snipes, Wesley'
 p923
-aS'Joel David Moore, Ludacris'
+aS'David Moore, Ludacris Joel'
 p924
 aS'Strong, Mark'
 p925
@@ -1871,7 +1871,7 @@ aS"O'Donnell, Chris"
 p935
 aS'Bratt, Benjamin'
 p936
-aS'Johnny Knoxville, Common'
+aS'Knoxville, Common Johnny'
 p937
 aS'Wayans, Marlon'
 p938
@@ -1957,7 +1957,7 @@ aS'Gruffudd, Ioan'
 p978
 aS'Slattery, John'
 p979
-aS'the Cable Guy, Larry'
+aS'Larry the Cable Guy'
 p980
 aS'Scott, Adam'
 p981

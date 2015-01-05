@@ -1,0 +1,962 @@
+(lp0
+S'Streep, Meryl'
+p1
+aS'Blanchett, Cate'
+p2
+aS'Lawrence, Jennifer'
+p3
+aS'Winslet, Kate'
+p4
+aS'Hepburn, Katharine'
+p5
+aS'Hepburn, Audrey'
+p6
+aS'Mirren, Helen'
+p7
+aS'Kidman, Nicole'
+p8
+aS'Bullock, Sandra'
+p9
+aS'Bergman, Ingrid'
+p10
+aS'Portman, Natalie'
+p11
+aS'Foster, Jodie'
+p12
+aS'Dench, Judi'
+p13
+aS'Adams, Amy'
+p14
+aS'Roberts, Julia'
+p15
+aS'Thompson, Emma'
+p16
+aS'Keaton, Diane'
+p17
+aS'Cotillard, Marion'
+p18
+aS'MacLaine, Shirley'
+p19
+aS'Witherspoon, Reese'
+p20
+aS'Hathaway, Anne'
+p21
+aS'Theron, Charlize'
+p22
+aS'Taylor, Elizabeth'
+p23
+aS'Smith, Maggie'
+p24
+aS'Davis, Bette'
+p25
+aS'Leigh, Vivien'
+p26
+aS'Jolie, Angelina'
+p27
+aS'de Havilland, Olivia'
+p28
+aS'Kelly, Grace'
+p29
+aS'Stanwyck, Barbara'
+p30
+aS'Fontaine, Joan'
+p31
+aS'Garson, Greer'
+p32
+aS'Dunaway, Faye'
+p33
+aS'Hayward, Susan'
+p34
+aS'Burstyn, Ellen'
+p35
+aS'Wyman, Jane'
+p36
+aS'Loren, Sophia'
+p37
+aS'Crawford, Joan'
+p38
+aS'Bates, Kathy'
+p39
+aS'Garland, Judy'
+p40
+aS'Andrews, Julie'
+p41
+aS'Monroe, Marilyn'
+p42
+aS'Kerr, Deborah'
+p43
+aS'Sarandon, Susan'
+p44
+aS'Spacek, Sissy'
+p45
+aS'Rainer, Luise'
+p46
+aS'Close, Glenn'
+p47
+aS'Day, Doris'
+p48
+aS'Wood, Natalie'
+p49
+aS'Fonda, Jane'
+p50
+aS'Lee Jones, Tommy'
+p51
+aS'L. Jackson, Samuel'
+p52
+aS'C. Scott, George'
+p53
+aS'Gardner, Ava'
+p54
+aS'Jones, Jennifer'
+p55
+aS'Field, Sally'
+p56
+aS'Garbo, Greta'
+p57
+aS'Hunter, Holly'
+p58
+aS'Swank, Hilary'
+p59
+aS'Colbert, Claudette'
+p60
+aS'Lane, Diane'
+p61
+aS'Lange, Jessica'
+p62
+aS'Swanson, Gloria'
+p63
+aS'Bacall, Lauren'
+p64
+aS'McDormand, Frances'
+p65
+aS'Shearer, Norma'
+p66
+aS'Midler, Bette'
+p67
+aS'Tyler Moore, Mary'
+p68
+aS'Magnani, Anna'
+p69
+aS'Berry, Halle'
+p70
+aS'Stone, Sharon'
+p71
+aS'Basinger, Kim'
+p72
+aS'Jackson, Glenda'
+p73
+aS'Reed, Donna'
+p74
+aS'Davis, Geena'
+p75
+aS'Moore, Demi'
+p76
+aS'Pfeiffer, Michelle'
+p77
+aS'Minnelli, Liza'
+p78
+aS'Barrymore, Drew'
+p79
+aS'Ryder, Winona'
+p80
+aS'Turner, Kathleen'
+p81
+aS'Thurman, Uma'
+p82
+aS'McDaniel, Hattie'
+p83
+aS'Russo, Rene'
+p84
+aS'Bening, Annette'
+p85
+aS'Weaver, Sigourney'
+p86
+aS'Streisand, Barbra'
+p87
+aS'Welch, Raquel'
+p88
+aS'Woodward, Joanne'
+p89
+aS'Booth, Shirley'
+p90
+aS'McCambridge, Mercedes'
+p91
+aS'Huston, Anjelica'
+p92
+aS'Wiest, Dianne'
+p93
+aS'Hawn, Goldie'
+p94
+aS'Davis, Judy'
+p95
+aS'Cardinale, Claudia'
+p96
+aS'Paltrow, Gwyneth'
+p97
+aS'Moore, Julianne'
+p98
+aS'Winger, Debra'
+p99
+aS'Ricci, Christina'
+p100
+aS'Binoche, Juliette'
+p101
+aS'Hannah, Daryl'
+p102
+aS'Goldberg, Whoopi'
+p103
+aS'G. Robinson, Edward'
+p104
+aS'Burnett, Carol'
+p105
+aS'Tandy, Jessica'
+p106
+aS'Hunt, Helen'
+p107
+aS'Sorvino, Mira'
+p108
+aS'Miranda, Carmen'
+p109
+aS'Hudson, Kate'
+p110
+aS'Zeta-Jones, Catherine'
+p111
+aS'Diaz, Cameron'
+p112
+aS'Reynolds, Debbie'
+p113
+aS'Hayworth, Rita'
+p114
+aS"O'Hara, Maureen"
+p115
+aS'Loy, Myrna'
+p116
+aS'Headey, Lena'
+p117
+aS'Collette, Toni'
+p118
+aS'Linney, Laura'
+p119
+aS'Dietrich, Marlene'
+p120
+aS'Lombard, Carole'
+p121
+aS'Arthur, Jean'
+p122
+aS'Harlow, Jean'
+p123
+aS'Rogers, Ginger'
+p124
+aS'Pickford, Mary'
+p125
+aS'West, Mae'
+p126
+aS'Anderson, Gillian'
+p127
+aS'Watson, Emma'
+p128
+aS'Ryan, Meg'
+p129
+aS'Murray Abraham, F.'
+p130
+aS'Grace Moretz, Chlo\xc3\xab'
+p131
+aS'Kendrick, Anna'
+p132
+aS'Watson, Emily'
+p133
+aS'Bonham Carter, Helena'
+p134
+aS'Knightley, Keira'
+p135
+aS'Thorpe, Alexis'
+p136
+aS'Davies, Marion'
+p137
+aS'Johansson, Scarlett'
+p138
+aS'Fanning, Dakota'
+p139
+aS'Aniston, Jennifer'
+p140
+aS'Connelly, Jennifer'
+p141
+aS'McAdams, Rachel'
+p142
+aS'Mulligan, Carey'
+p143
+aS'Kunis, Mila'
+p144
+aS'Seyfried, Amanda'
+p145
+aS'Lopez, Jennifer'
+p146
+aS'Campbell, Neve'
+p147
+aS'Balk, Fairuza'
+p148
+aS'Alba, Jessica'
+p149
+aS'Stewart, Kristen'
+p150
+aS'Walters, Julie'
+p151
+aS'Mara, Rooney'
+p152
+aS'Lee Curtis, Jamie'
+p153
+aS'Stone, Emma'
+p154
+aS'Dunst, Kirsten'
+p155
+aS'Ferrer, Jos\xc3\xa9'
+p156
+aS'Beckinsale, Kate'
+p157
+aS'Deschanel, Zooey'
+p158
+aS'Williams, Michelle'
+p159
+aS'Jovovich, Milla'
+p160
+aS'Gomez, Selena'
+p161
+aS'Weisz, Rachel'
+p162
+aS'Bell, Kristen'
+p163
+aS'Heigl, Katherine'
+p164
+aS'Tyler, Liv'
+p165
+aS'Chastain, Jessica'
+p166
+aS'Fox, Megan'
+p167
+aS'White, Betty'
+p168
+aS'Page, Geraldine'
+p169
+aS'Dushku, Eliza'
+p170
+aS'Meester, Leighton'
+p171
+aS'Davis, Viola'
+p172
+aS'Temple, Shirley'
+p173
+aS'Louis-Dreyfus, Julia'
+p174
+aS'Thirlby, Olivia'
+p175
+aS'Pen\xc3\xa9lope Cruz, Cher'
+p176
+aS'Fletcher, Louise'
+p177
+aS'Christie, Julie'
+p178
+aS'Neal, Patricia'
+p179
+aS'S. Ngor, Haing'
+p180
+aS'Bancroft, Anne'
+p181
+aS'Novak, Kim'
+p182
+aS'Signoret, Simone'
+p183
+aS'Page, Ellen'
+p184
+aS'Magnani, Anna'
+p185
+aS'Holliday, Judy'
+p186
+aS'Young, Loretta'
+p187
+aS'Jones, Shirley'
+p188
+aS'Farmiga, Vera'
+p189
+aS'Hayes, Helen'
+p190
+aS'Dressler, Marie'
+p191
+aS'Gaynor, Janet'
+p192
+aS"Nyong'o, Lupita"
+p193
+aS'Spencer, Octavia'
+p194
+aS'Leo, Melissa'
+p195
+aS"Marlee Matlin, Mo'Nique"
+p196
+aS'Swinton, Tilda'
+p197
+aS'Hudson, Jennifer'
+p198
+aS'Zellweger, Ren\xc3\xa9e'
+p199
+aS'Gay Harden, Marcia'
+p200
+aS'Paquin, Anna'
+p201
+aS'Tomei, Marisa'
+p202
+aS'Ruehl, Mercedes'
+p203
+aS'Fricker, Brenda'
+p204
+aS'Quinn, Anthony'
+p205
+aS'Dukakis, Olympia'
+p206
+aS'Ashcroft, Peggy'
+p207
+aS'Hunt, Linda'
+p208
+aS'Stapleton, Maureen'
+p209
+aS'Steenburgen, Mary'
+p210
+aS'Straight, Beatrice'
+p211
+aS'Redgrave, Vanessa'
+p212
+aS'Grant, Lee'
+p213
+aS'Heckart, Eileen'
+p214
+aS'Leachman, Cloris'
+p215
+aS'Gordon, Ruth'
+p216
+aS'Parsons, Estelle'
+p217
+aS'Dennis, Sandy'
+p218
+aS'Winters, Shelley'
+p219
+aS'Gyllenhaal, Maggie'
+p220
+aS'Holmes, Katie'
+p221
+aS'Duke, Patty'
+p222
+aS'Moreno, Rita'
+p223
+aS'Hiller, Wendy'
+p224
+aS'Umeki, Miyoshi'
+p225
+aS'Malone, Dorothy'
+p226
+aS'Van Fleet, Jo'
+p227
+aS'Marie Saint, Eva'
+p228
+aS'Grahame, Gloria'
+p229
+aS'Hunter, Kim'
+p230
+aS'Rukh Khan, Shah'
+p231
+aS'Birch, Thora'
+p232
+aS'Trevor, Claire'
+p233
+aS'Holm, Celeste'
+p234
+aS'Baxter, Anne'
+p235
+aS'Latifah, Queen'
+p236
+aS'Barrymore, Ethel'
+p237
+aS'Dawson, Rosario'
+p238
+aS'Wright, Teresa'
+p239
+aS'Astor, Mary'
+p240
+aS'Darwell, Jane'
+p241
+aS'McDaniel, Hattie'
+p242
+aS'Wasikowska, Mia'
+p243
+aS'Breslin, Abigail'
+p244
+aS'Sondergaard, Gale'
+p245
+aS'McCarthy, Melissa'
+p246
+aS'Fey, Tina'
+p247
+aS'Saldana, Zoe'
+p248
+aS'Moss, Elisabeth'
+p249
+aS'Palicki, Adrianne'
+p250
+aS'Garner, Jennifer'
+p251
+aS'Wiig, Kristen'
+p252
+aS'Squibb, June'
+p253
+aS'Hawkins, Sally'
+p254
+aS'Cuoco-Sweeting, Kaley'
+p255
+aS'Watts, Naomi'
+p256
+aS'Robb, AnnaSophia'
+p257
+aS'Arterton, Gemma'
+p258
+aS'Wilde, Olivia'
+p259
+aS'Fisher, Isla'
+p260
+aS'Woodley, Shailene'
+p261
+aS'Wilson, Rebel'
+p262
+aS'Roberts, Emma'
+p263
+aS'Heard, Amber'
+p264
+aS'Palmer, Teresa'
+p265
+aS'Ronan, Saoirse'
+p266
+aS'Banks, Elizabeth'
+p267
+aS'Bell, Kristen'
+p268
+aS'Dormer, Natalie'
+p269
+aS'Snow, Brittany'
+p270
+aS'Mara, Kate'
+p271
+aS'Hough, Julianne'
+p272
+aS'Collins, Lily'
+p273
+aS'Smulders, Cobie'
+p274
+aS'Eve, Alice'
+p275
+aS'Chung, Jamie'
+p276
+aS'Rapace, Noomi'
+p277
+aS'Lively, Blake'
+p278
+aS'Grace, Maggie'
+p279
+aS'Biel, Jessica'
+p280
+aS'Green, Eva'
+p281
+aS'Bob Thornton, Billy'
+p282
+aS'Depardieu, G\xc3\xa9rard'
+p283
+aS'James Olmos, Edward'
+p284
+aS'Dennings, Kat'
+p285
+aS'Wallis, Quvenzhan\xc3\xa9'
+p286
+aS'Riva, Emmanuelle'
+p287
+aS'Gerwig, Greta'
+p288
+aS'Larson, Brie'
+p289
+aS'Lucas, Jessica'
+p290
+aS'Ullmann, Liv'
+p291
+aS'Falconetti, Maria'
+p292
+aS'Hara, Setsuko'
+p293
+aS'Russell, Rosalind'
+p294
+aS'Fiorentino, Linda'
+p295
+aS'Sidibe, Gabourey'
+p296
+aS'Deneuve, Catherine'
+p297
+aS'Farrow, Mia'
+p298
+aS'Tautou, Audrey'
+p299
+aS'Moreau, Jeanne'
+p300
+aS'Huppert, Isabelle'
+p301
+aS'Rowlands, Gena'
+p302
+aS'Manville, Lesley'
+p303
+aS'Olsen, Elizabeth'
+p304
+aS'Kinski, Nastassja'
+p305
+aS'Laurent, M\xc3\xa9lanie'
+p306
+aS'Houston, Whitney'
+p307
+aS'Huffman, Felicity'
+p308
+aS'Staunton, Imelda'
+p309
+aS'Br\xc3\xbchl, Daniel'
+p310
+aS'B. Jordan, Michael'
+p311
+aS'Mifune, Toshir\xc3\xb4'
+p312
+aS'Washington, Kerry'
+p313
+aS'Moss, Carrie-Anne'
+p314
+aS'Leigh, Janet'
+p315
+aS'Sandino Moreno, Catalina'
+p316
+aS'Morton, Samantha'
+p317
+aS'Castle-Hughes, Keisha'
+p318
+aS'Hayek, Salma'
+p319
+aS'Allen, Joan'
+p320
+aS'McTeer, Janet'
+p321
+aS'Montenegro, Fernanda'
+p322
+aS'Scott Thomas, Kristin'
+p323
+aS'Blethyn, Brenda'
+p324
+aS'Shue, Elisabeth'
+p325
+aS'Richardson, Miranda'
+p326
+aS'Channing, Stockard'
+p327
+aS'Bassett, Angela'
+p328
+aS'McDonnell, Mary'
+p329
+aS'Deneuve, Catherine'
+p330
+aS'Dern, Laura'
+p331
+aS'Collins, Pauline'
+p332
+aS'Adjani, Isabelle'
+p333
+aS'Griffith, Melanie'
+p334
+aS'Kirkland, Sally'
+p335
+aS'Alexander, Jane'
+p336
+aS'Mason, Marsha'
+p337
+aS'J. Fox, Michael'
+p338
+aS'Carell, Steve'
+p339
+aS'E. Grant, Richard'
+p340
+aS'Earle Haley, Jackie'
+p341
+aS'Weaver, Jacki'
+p342
+aS'Bejo, B\xc3\xa9r\xc3\xa9nice'
+p343
+aS'Steinfeld, Hailee'
+p344
+aS'Blonsky, Nikki'
+p345
+aS'Quinlan, Kathleen'
+p346
+aS'P. Henson, Taraji'
+p347
+aS'Ryan, Amy'
+p348
+aS'Dee, Ruby'
+p349
+aS'Clayburgh, Jill'
+p350
+aS'Barraza, Adriana'
+p351
+aS'Kikuchi, Rinko'
+p352
+aS'Keener, Catherine'
+p353
+aS'Madsen, Virginia'
+p354
+aS'Okonedo, Sophie'
+p355
+aS'Clarkson, Patricia'
+p356
+aS'Aghdashloo, Shohreh'
+p357
+aS'Lohan, Lindsay'
+p358
+aS'Trachtenberg, Michelle'
+p359
+aS'Sevigny, Chlo\xc3\xab'
+p360
+aS'Redgrave, Lynn'
+p361
+aS'Griffiths, Rachel'
+p362
+aS'Robbie, Margot'
+p363
+aS'Taylor, Lili'
+p364
+aS'Weigert, Robin'
+p365
+aS'Bell, Lake'
+p366
+aS'Ry\xc3\xbb, Chish\xc3\xbb'
+p367
+aS'Garc\xc3\xada Bernal, Gael'
+p368
+aS'M\xc3\xbche, Ulrich'
+p369
+aS'Seydoux, L\xc3\xa9a'
+p370
+aS'Exarchopoulos, Ad\xc3\xa8le'
+p371
+aS'Delpy, Julie'
+p372
+aS'Hamilton, Linda'
+p373
+aS'Fisher, Carrie'
+p374
+aS'Grier, Pam'
+p375
+aS'Emily Browning, Bj\xc3\xb6rk'
+p376
+aS'Lewis, Juliette'
+p377
+aS'Jessica Parker, Sarah'
+p378
+aS'Laurie, Piper'
+p379
+aS'Cyrus, Miley'
+p380
+aS'Tomlin, Lily'
+p381
+aS'Friel, Anna'
+p382
+aS'Stuart, Gloria'
+p383
+aS'Shire, Talia'
+p384
+aS'Reed, Donna'
+p385
+aS'Lyon, Sue'
+p386
+aS'Newton-John, Olivia'
+p387
+aS'Driver, Minnie'
+p388
+aS'Garr, Teri'
+p389
+aS'Russell, Keri'
+p390
+aS'Seberg, Jean'
+p391
+aS'Polley, Sarah'
+p392
+aS'Capshaw, Kate'
+p393
+aS'Haden Church, Thomas'
+p394
+aS'C. Reilly, John'
+p395
+aS'Clarke Duncan, Michael'
+p396
+aS'Joel Osment, Haley'
+p397
+aS'H. Macy, William'
+p398
+aS'Scofield, Paul'
+p399
+aS'Pinkett Smith, Jada'
+p400
+aS"O'Neal, Tatum"
+p401
+aS'Faris, Anna'
+p402
+aS'Greene, Ashley'
+p403
+aS'Janssen, Famke'
+p404
+aS'Fischer, Jenna'
+p405
+aS'Hunt, Bonnie'
+p406
+aS'Mann, Leslie'
+p407
+aS'Kaling, Mindy'
+p408
+aS'Tipton, Analeigh'
+p409
+aS'Newton, Thandie'
+p410
+aS'Peet, Amanda'
+p411
+aS'Stiles, Julia'
+p412
+aS'Bello, Maria'
+p413
+aS'Mendes, Eva'
+p414
+aS'Blunt, Emily'
+p415
+aS'Byrne, Rose'
+p416
+aS'Judd, Ashley'
+p417
+aS'Clarke, Emilia'
+p418
+aS'Applegate, Christina'
+p419
+aS'Long, Nia'
+p420
+aS'Hall, Regina'
+p421
+aS'Leoni, T\xc3\xa9a'
+p422
+aS'Daddario, Alexandra'
+p423
+aS'Malone, Jena'
+p424
+aS'Patrick Harris, Neil'
+p425
+aS'Skarsg\xc3\xa5rd, Stellan'
+p426
+aS'Liu, Lucy'
+p427
+aS'Romijn, Rebecca'
+p428
+aS'Rodriguez, Michelle'
+p429
+aS'Michelle Gellar, Sarah'
+p430
+aS'Knowles, Beyonc\xc3\xa9'
+p431
+aS'Hall, Rebecca'
+p432
+aS'Perabo, Piper'
+p433
+aS'Cox, Courteney'
+p434
+aS'Posey, Parker'
+p435
+aS'Patton, Paula'
+p436
+aS'Monaghan, Michelle'
+p437
+aS'Danes, Claire'
+p438
+aS'Larter, Ali'
+p439
+aS'Bosworth, Kate'
+p440
+aS'Rachel Wood, Evan'
+p441
+aS'Horn, Cody'
+p442
+aS'Zhang, Ziyi'
+p443
+aS'Crew, Amanda'
+p444
+aS'Bynes, Amanda'
+p445
+aS'Kudrow, Lisa'
+p446
+aS'Campbell, Neve'
+p447
+aS'DeGeneres, Ellen'
+p448
+aS'Davis, Hope'
+p449
+aS'Moore, Mandy'
+p450
+aS'Madsen, Virginia'
+p451
+aS'the Entertainer, Cedric'
+p452
+aS'Pinto, Freida'
+p453
+aS'Duff, Hilary'
+p454
+aS'Elizabeth Winstead, Mary'
+p455
+aS'Coolidge, Jennifer'
+p456
+aS'Lathan, Sanaa'
+p457
+aS'Ferrera, America'
+p458
+aS'Jones, January'
+p459
+aS'PenaVega, Alexa'
+p460
+aS'Richards, Denise'
+p461
+aS'Kurylenko, Olga'
+p462
+aS'Potente, Franka'
+p463
+aS'Jones, Rashida'
+p464
+aS'Silverstone, Alicia'
+p465
+aS'Huntington-Whiteley, Rosie'
+p466
+aS'Evangeline Lilly, Madonna'
+p467
+aS'Panettiere, Hayden'
+p468
+aS'Love Hewitt, Jennifer'
+p469
+aS'Rossum, Emmy'
+p470
+aS'King, Joey'
+p471
+aS'Goodwin, Ginnifer'
+p472
+aS'Taylor, Christine'
+p473
+aS'Hudgens, Vanessa'
+p474
+aS'Cornish, Abbie'
+p475
+aS'Pike, Rosamund'
+p476
+aS'T. Nelson, Craig'
+p477
+aS'Joel David Moore, Ludacris'
+p478
+aS'Johnny Knoxville, Common'
+p479
+aS'the Cable Guy, Larry'
+p480
+a.

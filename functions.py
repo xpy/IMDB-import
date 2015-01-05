@@ -195,4 +195,4 @@ def getTop100Actors():
     return [actor.strip("'") for actor in actors]
 
 def readFileLine(f):
-    return f.readline().decode('iso-8859-1').encode('utf8')
+    return f.readline()#.decode('ISO 8859-1').encode('utf8')

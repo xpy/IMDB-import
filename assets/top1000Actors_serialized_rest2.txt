@@ -1,0 +1,18 @@
+(lp0
+S'Cruz, Pen\xc3\xa9lope'
+p1
+aS"Matlin, Mo'Nique Marlee"
+p2
+aS'Browning, Bj\xc3\xb6rk Emily'
+p3
+aS'Entertainer, Cedric the'
+p4
+aS'Lilly, Madonna Evangeline'
+p5
+aS'David Moore, Ludacris Joel'
+p6
+aS'Knoxville, Common Johnny'
+p7
+aS'Larry the Cable Guy'
+p8
+a.

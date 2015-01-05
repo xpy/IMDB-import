@@ -35,35 +35,35 @@ def addActorsToMovies():
     while line:
         splitLine = [a for a in line.split('\t') if a != '']
         actorName = splitLine[0]
-        isTop1000 = actors.count(actorName) > 0
+        actorNameOnly = re.sub('\s\([a-zA-Z]*\)$', '', actorName).decode('utf8').encode('iso-8859-1')
+        isTop1000 = actors.count(actorNameOnly) > 0
 
         k += 1
         if k % 10000 == 0:
             print k
 
         if isTop1000:
-            actors.remove(actorName)
+            actors.remove(actorNameOnly)
             actor = functions.getActor(actorName)
             print(actor)
             i += 1
             if i % 100 == 0:
                 print actor, str(i)
-                functions.checkTimer('Add Actor')
+            functions.checkTimer('Add Actor')
 
-                functions.startTimer('Deleting Duplicates')
-                cur.execute("DELETE FROM tmp_actor_to_movie WHERE id NOT IN "
-                            "(SELECT min(id) FROM tmp_actor_to_movie GROUP BY actor_id,movie_id)")
-                functions.checkTimer('Deleting Duplicates')
+            functions.startTimer('Deleting Duplicates')
+            cur.execute("DELETE FROM tmp_actor_to_movie WHERE id NOT IN "
+                        "(SELECT min(id) FROM tmp_actor_to_movie GROUP BY actor_id,movie_id)")
+            functions.checkTimer('Deleting Duplicates')
 
-                functions.startTimer('Insert to real table')
-                cur.execute("INSERT INTO actor_to_movie(actor_id ,movie_id,billing_position,role_id) SELECT DISTINCT "
-                            "actor_id,movie_id,billing_position,role_id FROM tmp_actor_to_movie;")
-                functions.checkTimer('Insert to real table')
+            functions.startTimer('Insert to real table')
+            cur.execute("INSERT INTO actor_to_movie(actor_id ,movie_id,billing_position,role_id) SELECT DISTINCT "
+                        "actor_id,movie_id,billing_position,role_id FROM tmp_actor_to_movie;")
+            functions.checkTimer('Insert to real table')
 
-                cur.execute("DELETE FROM tmp_actor_to_movie")
-                functions.startTimer('Add Actor')
-                functions.checkTimer('Add all Actors')
-                conn.commit()
+            cur.execute("DELETE FROM tmp_actor_to_movie")
+            functions.startTimer('Add Actor')
+            functions.checkTimer('Add all Actors')
                 # return
             movie = functions.getMovie(splitLine[1])
             addRole(movie['roles'])
@@ -77,6 +77,7 @@ def addActorsToMovies():
                     addRole(movie['roles'])
                     addMovieToActorToDB(actor, movie)
                 line = functions.readFileLine(f)
+            conn.commit()
             line = functions.readFileLine(f)
             if line.find(fileEnd) >= 0: return
         else:
@@ -94,10 +95,11 @@ functions.jumpLines(f, 4)
 conn = psycopg2.connect(variables.postgresCredentials)
 cur = conn.cursor()
 
-''' Insert top 1000 Actors into a tmp table '''
+''' Insert top 1000 Actors into a List '''
 actors = pickle.load(open('../assets/top1000Actors_serialized.txt', 'r'))
 # functions.resetTable(cur, 'role')
 functions.resetTable(cur, 'actor_to_movie')
+
 cur.execute("SET transform_null_equals TO ON")
 cur.execute("CREATE TEMP TABLE tmp_actor_to_movie"
             "(id serial ,actor_id int,movie_id int,billing_position int,role_id integer);")
