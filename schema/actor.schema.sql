@@ -4,8 +4,8 @@
 
 CREATE TABLE actor
 (
-  id integer NOT NULL DEFAULT nextval('actors_id_seq'::regclass),
-  name text,
+  id integer NOT NULL DEFAULT nextval('actor_id_seq'::regclass),
+  fname_id text,
   gender "char",
   CONSTRAINT actor_id PRIMARY KEY (id),
   CONSTRAINT "UC_actor__name__gender" UNIQUE (name, gender)

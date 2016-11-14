@@ -1,5 +1,6 @@
 import re
 import psycopg2
+import sys
 import variables
 import functions
 import pickle
@@ -41,7 +42,11 @@ def add_actors():
                 conn.commit()
                 functions.check_timer('Add to tmp_table')
             actor = functions.get_actor(actor_name)
-            insert_actor(actor)
+            try:
+                insert_actor(actor)
+            except:
+                print(sys.exc_info()[0])
+                print("FERROR ", [actor_name,actor])
         line = f.readline()
         while line != '' and (len(line) == 1 or line[0] == '\t'):
             line = f.readline()
@@ -54,8 +59,8 @@ conn = psycopg2.connect(variables.postgres_credentials)
 cur = conn.cursor()
 
 ''' Insert top 1000 Actors into a List '''
-actors = [a.decode('utf-8') for a in pickle.load(codecs.open('../assets/top1000Actors_serialized.txt', 'r'))]
-
+actors = [a for a in pickle.load(codecs.open('../assets/top1000Actors_serialized.txt', 'rb'))]
+print(actors)
 # functions.resetTable(cur,'actor')
 # functions.resetTable(cur,'actor_name')
 

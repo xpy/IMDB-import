@@ -1,5 +1,7 @@
 import re
 import psycopg2
+import sys
+
 import variables
 import functions
 import pickle
@@ -11,8 +13,9 @@ fileEnd = '---------------------------------------------------------------------
 
 
 def insert_name(name):
-    cur.execute("INSERT INTO actor_name (name) SELECT %s  WHERE NOT EXISTS (select 1 FROM actor_name WHERE name = %s )",
-                [name, name])
+    cur.execute(
+        "INSERT INTO actor_name (name) SELECT %s  WHERE NOT EXISTS (select 1 FROM actor_name WHERE name = %s )",
+        [name, name])
 
 
 def insert_actor(actor):
@@ -26,6 +29,7 @@ def insert_actor(actor):
 def add_actors():
     i = 0
     line = functions.read_file_line(f)
+    # for line in f.readlines():
     while line:
         if line.find(fileEnd) >= 0:
             return
@@ -41,7 +45,11 @@ def add_actors():
                 conn.commit()
                 functions.check_timer('Add to tmp_table')
             actor = functions.get_actor(actor_name)
-            insert_actor(actor)
+            try:
+                insert_actor(actor)
+            except:
+                print(sys.exc_info()[0])
+                print("FERROR ", [actor_name,actor])
         line = f.readline()
         while line != '' and (len(line) == 1 or line[0] == '\t'):
             line = f.readline()
@@ -54,8 +62,8 @@ conn = psycopg2.connect(variables.postgres_credentials)
 cur = conn.cursor()
 
 ''' Insert top 1000 Actors into a List '''
-actors = [a.decode('utf-8') for a in pickle.load(codecs.open('../assets/top1000Actors_serialized.txt', 'r'))]
-
+actors = [a for a in pickle.load(codecs.open('../assets/top1000Actors_serialized.txt', 'rb'))]
+print(actors)
 functions.reset_table(cur, 'actor')
 functions.reset_table(cur, 'actor_name')
 

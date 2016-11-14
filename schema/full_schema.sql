@@ -386,10 +386,10 @@ ALTER SEQUENCE actor_to_movie_id_seq OWNED BY actor_to_movie.id;
 
 
 --
--- Name: actors_id_seq; Type: SEQUENCE; Schema: light; Owner: postgres
+-- Name: actor_id_seq; Type: SEQUENCE; Schema: light; Owner: postgres
 --
 
-CREATE SEQUENCE actors_id_seq
+CREATE SEQUENCE actor_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -397,13 +397,13 @@ CREATE SEQUENCE actors_id_seq
     CACHE 1;
 
 
-ALTER TABLE light.actors_id_seq OWNER TO postgres;
+ALTER TABLE light.actor_id_seq OWNER TO postgres;
 
 --
--- Name: actors_id_seq; Type: SEQUENCE OWNED BY; Schema: light; Owner: postgres
+-- Name: actor_id_seq; Type: SEQUENCE OWNED BY; Schema: light; Owner: postgres
 --
 
-ALTER SEQUENCE actors_id_seq OWNED BY actor.id;
+ALTER SEQUENCE actor_id_seq OWNED BY actor.id;
 
 
 --
@@ -633,10 +633,10 @@ ALTER SEQUENCE actor_to_movie_id_seq OWNED BY actor_to_movie.id;
 
 
 --
--- Name: actors_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: actor_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE actors_id_seq
+CREATE SEQUENCE actor_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -644,13 +644,13 @@ CREATE SEQUENCE actors_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.actors_id_seq OWNER TO postgres;
+ALTER TABLE public.actor_id_seq OWNER TO postgres;
 
 --
--- Name: actors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: actor_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE actors_id_seq OWNED BY actor.id;
+ALTER SEQUENCE actor_id_seq OWNED BY actor.id;
 
 
 --
@@ -722,7 +722,7 @@ SET search_path = light, pg_catalog;
 -- Name: id; Type: DEFAULT; Schema: light; Owner: postgres
 --
 
-ALTER TABLE ONLY actor ALTER COLUMN id SET DEFAULT nextval('actors_id_seq'::regclass);
+ALTER TABLE ONLY actor ALTER COLUMN id SET DEFAULT nextval('actor_id_seq'::regclass);
 
 
 --
@@ -766,7 +766,7 @@ SET search_path = public, pg_catalog;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY actor ALTER COLUMN id SET DEFAULT nextval('actors_id_seq'::regclass);
+ALTER TABLE ONLY actor ALTER COLUMN id SET DEFAULT nextval('actor_id_seq'::regclass);
 
 
 --
