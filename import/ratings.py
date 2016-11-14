@@ -10,22 +10,22 @@ fileEnd = '--------------------------------------------------------------------'
 
 def add_ratings():
     i = 0
-    line = f.readline().decode('iso-8859-1').encode('utf8')
+    line = f.readline()
     while line:
-        rating = line.split()
-        if re.match('\{.*\}', rating[len(rating) - 1]) < 0:
+        if re.match('.*\{.*\}$', line) is None:
+            rating = line.split()
             final_rating = {'rating': rating[2], 'votes': rating[1]}
             rating = ' '.join(rating[3:])
             movie = functions.get_movie_split(rating)
             i += 1
             if i % 10000 == 0:
-                print(rating + str(i))
+                print(rating + ' ' + str(i))
             cur.execute("UPDATE movie SET rating = %s, votes = %s WHERE name = %s and year_id = %s",
-                        [final_rating['rating'], final_rating['votes'], movie['name'], movie['year_id']])
-        line = f.readline().decode('iso-8859-1').encode('utf8')
+                        [final_rating['rating'], final_rating['votes'], movie['name'], str(movie['year_id'])])
+        line = f.readline()
         while line != '' and line.find(fileEnd) < 0 and (
                         len(line) == 1 or line[0] != ' '):
-            line = f.readline().decode('iso-8859-1').encode('utf8')
+            line = f.readline()
 
         if line.find(fileEnd) >= 0:
             return
