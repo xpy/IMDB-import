@@ -1,59 +1,59 @@
 import psycopg2
 import variables
 import functions
+import codecs
 
 fileName = 'movies.list'
-f = open(variables.imdbFilesPath + fileName, 'r')
+f = codecs.open(variables.imdb_files_path + fileName, 'r', 'ISO 8859-1')
 fileEnd = '-----------------------------------------------------------------------------'
 
 
-def insertMovie(movie):
+def insert_movie(movie):
     cur.execute(
         "INSERT INTO tmp_movie (name,year,year_id) SELECT %s,%s,%s ",
         [movie['name'], movie['year'], movie['year_id']])
 
 
-def addMovies():
+def add_movies():
     i = 0
-    line = f.readline().decode('iso-8859-1').encode('utf8')
-    prevMovie = {'name':None,'year':None,'year_id':None}
+    line = functions.read_file_line(f)
+    prev_movie = {'name': None, 'year': None, 'year_id': None}
     while line:
-        movie = functions.getMovieSplit(line)
-        if (movie != None):
+        movie = functions.get_movie_split(line)
+        if movie is not None:
             i += 1
             if i % 10000 == 0:
-                print movie['name'] + ' - ' + str(i)
-        if prevMovie['name'] != movie['name'] or prevMovie['year'] != movie['year'] or prevMovie['year_id'] != movie['year_id']:
-            insertMovie(movie)
-            prevMovie = movie
-        line = f.readline().decode('iso-8859-1').encode('utf8')
+                print(movie['name'] + ' - ' + str(i))
+        if prev_movie['name'] != movie['name'] or prev_movie['year'] != movie['year'] or prev_movie['year_id'] != movie[
+                'year_id']:
+            insert_movie(movie)
+            prev_movie = movie
+        line = functions.read_file_line(f)
         while line != '' and (len(line) == 1 or line[0] == '\t'):
-            line = f.readline().decode('iso-8859-1').encode('utf8')
+            line = functions.read_file_line(f)
         if line.find(fileEnd) >= 0:
             return
 
 
-functions.jumpToLineWithString(f, '===========')
-functions.jumpLines(f, 1)
+functions.jump_to_line_with_string(f, '===========')
+functions.jump_lines(f, 1)
 
-functions.jumpLines(f, 0)
+functions.jump_lines(f, 0)
 
-conn = psycopg2.connect(variables.postgresCredentials)
+conn = psycopg2.connect(variables.postgres_credentials)
 cur = conn.cursor()
 
-functions.resetTable(cur, 'movie')
+functions.reset_table(cur, 'movie')
 cur.execute("CREATE TEMP TABLE tmp_movie( name text, year integer, year_id integer );")
 
-functions.startTimer('Add to tmp_table')
-addMovies()
-functions.checkTimer('Add to tmp_table')
+functions.start_timer('Add to tmp_table')
+add_movies()
+functions.check_timer('Add to tmp_table')
 
-functions.startTimer('Insert to real table')
+functions.start_timer('Insert to real table')
 cur.execute("INSERT INTO movie (name,year,year_id) (SELECT DISTINCT name,year,year_id FROM tmp_movie ORDER BY name)")
-functions.checkTimer('Insert to real table')
+functions.check_timer('Insert to real table')
 
-functions.startTimer('Commit to DB')
+functions.start_timer('Commit to DB')
 conn.commit()
-functions.checkTimer('Commit to DB')
-
-
+functions.check_timer('Commit to DB')

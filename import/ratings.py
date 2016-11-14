@@ -4,39 +4,41 @@ import variables
 import functions
 
 fileName = 'ratings.list'
-f = open(variables.imdbFilesPath + fileName, 'r')
+f = open(variables.imdb_files_path + fileName, 'r')
 fileEnd = '--------------------------------------------------------------------'
 
-def addRatings():
+
+def add_ratings():
     i = 0
     line = f.readline().decode('iso-8859-1').encode('utf8')
     while line:
         rating = line.split()
-        if(re.match('\{.*\}',rating[len(rating) -1]) < 0 ):
-            finalRating = {'rating': rating[2], 'votes': rating[1]}
+        if re.match('\{.*\}', rating[len(rating) - 1]) < 0:
+            final_rating = {'rating': rating[2], 'votes': rating[1]}
             rating = ' '.join(rating[3:])
-            movie = functions.getMovieSplit(rating)
+            movie = functions.get_movie_split(rating)
             i += 1
             if i % 10000 == 0:
-                print rating + str(i)
+                print(rating + str(i))
             cur.execute("UPDATE movie SET rating = %s, votes = %s WHERE name = %s and year_id = %s",
-                        [finalRating['rating'], finalRating['votes'], movie['name'], movie['year_id']])
+                        [final_rating['rating'], final_rating['votes'], movie['name'], movie['year_id']])
         line = f.readline().decode('iso-8859-1').encode('utf8')
         while line != '' and line.find(fileEnd) < 0 and (
-                len(line) == 1 or line[0] != ' '):
+                        len(line) == 1 or line[0] != ' '):
             line = f.readline().decode('iso-8859-1').encode('utf8')
 
-        if line.find(fileEnd) >= 0: return
+        if line.find(fileEnd) >= 0:
+            return
 
 
-functions.jumpToLineWithString(f,'New  Distribution  Votes  Rank  Title')
-functions.jumpLines(f,0)
+functions.jump_to_line_with_string(f, 'New  Distribution  Votes  Rank  Title')
+functions.jump_lines(f, 0)
 
-conn = psycopg2.connect(variables.postgresCredentials)
+conn = psycopg2.connect(variables.postgres_credentials)
 cur = conn.cursor()
-functions.startTimer('Add ratings')
-addRatings()
-functions.checkTimer('Add ratings')
-functions.startTimer('Commit to DB')
+functions.start_timer('Add ratings')
+add_ratings()
+functions.check_timer('Add ratings')
+functions.start_timer('Commit to DB')
 conn.commit()
-functions.checkTimer('Commit to DB')
+functions.check_timer('Commit to DB')

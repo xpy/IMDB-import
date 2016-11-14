@@ -4,34 +4,34 @@ import math
 import roman
 
 
-def jumpLines(f, numOfLines):
+def jump_lines(f, num_of_lines):
     line = f.readline()
-    while (numOfLines > 1 and line != ''):
+    while num_of_lines > 1 and line != '':
         line = f.readline()
-        numOfLines -= 1
+        num_of_lines -= 1
 
 
-def jumpToLineWithString(f, str):
+def jump_to_line_with_string(f, string):
     line = f.readline()
-    while line.find(str) < 0 and line != '':
+    while line.find(string) < 0 and line != '':
         line = f.readline()
 
 
 movieRegEx = '((\s+\(([0-9\/IVXC\?]*)\)){0,1}(\s+\((TV|V)\))*(\s+\{([^\{\}]+)\})*(\s+\{\{([^\{\}]+)\}\})*(\s+\(([^\(\)]+)\)){0,1}(\s+\(([^\(\)]+)\)){0,1}(\s+\[([^\[\]]+)\])*(\s+\<([^\<\>]+)\>)*)$'
 
 
-def wrapRegEx(l, r):
+def wrap_regex(l, r):
     return '\s+' + l + '([^' + r + l + ']*)' + r + '$'
 
 
-def getFromEnd(l, r, str):
+def get_from_end(l, r, string):
     # print wrapRegEx(l, r)
-    ret = re.search(wrapRegEx(l, r), str)
-    return None if ret == None else ret.groups()[0]
+    ret = re.search(wrap_regex(l, r), string)
+    return None if ret is None else ret.groups()[0]
 
 
-def removeFromEnd(l, r, str):
-    return re.sub(wrapRegEx(l, r), '', str)
+def remove_from_end(l, r, string):
+    return re.sub(wrap_regex(l, r), '', string)
 
 
 """
@@ -65,11 +65,12 @@ def getMovie(str):
 """
 
 
-def getMovie(str):
+def get_movie(string):
     debug = False
-    if debug: print("Starting String: " + str)
+    if debug:
+        print("Starting String: " + string)
     movie = {}
-    reg = re.search(movieRegEx, str)
+    reg = re.search(movieRegEx, string)
     groups = (reg.groups())
     # print groups[2],groups[4],groups[6],groups[8],groups[10],groups[12]
 
@@ -84,21 +85,20 @@ def getMovie(str):
     # print(movie)
     # str = re.sub(movieRegEx, '', str)
 
-    return dict(movie.items() + getMovieSplit(str).items())
+    return dict(movie.items() + get_movie_split(string).items())
 
 
-def getMovieSplit(str, p=False):
+def get_movie_split(string, p=False):
     # print(str)
-    str = str.split()
-    movieName = []
-    movieName.append(str[0])
+    string = string.split()
+    movieName = [string[0]]
     k = 1
-    while k < len(str) and re.match('\(([0-9]{4}|[\?]{4})+(\/[IVXC]*)*\)', str[k]) == None:
-        movieName.append(str[k])
+    while k < len(string) and re.match('\(([0-9]{4}|[\?]{4})+(\/[IVXC]*)*\)', string[k]) is None:
+        movieName.append(string[k])
         k += 1
     ret = {'name': ' '.join(movieName).replace('"', ''), 'year_id': None,
            'year': None}
-    year_id = str[k].replace('(', '').replace(')', '')
+    year_id = string[k].replace('(', '').replace(')', '')
     if year_id == '????':
         year_id = None
     if year_id is not None:
@@ -106,7 +106,8 @@ def getMovieSplit(str, p=False):
         ret['year'] = yearSplit[0]
         if ret['year'] is None or not ret['year'].isdigit():
             ret['year'] = None
-        if p: print  yearSplit;
+        if p:
+            print(yearSplit)
         if len(yearSplit) > 1:
             if yearSplit[-1] == '????':
                 ret['year_id'] = None
@@ -120,7 +121,7 @@ def getMovieSplit(str, p=False):
 actorRegEx = '([^,]*),?\s?([^\(]*).?\(?([^\(\)]*)'
 
 
-def getActor(actor):
+def get_actor(actor):
     tmpactor = actor
     name_id = re.search('\([IVXC]*\)', actor)
     if name_id is not None and len(name_id.group()):
@@ -128,17 +129,17 @@ def getActor(actor):
     else:
         name_id = None
     if name_id is not None:
-        actor = actor.replace(name_id,'')
-    actor= actor.strip().split(', ')
+        actor = actor.replace(name_id, '')
+    actor = actor.strip().split(', ')
 
     # reg = re.search(actorRegEx, actor)
     # groups = reg.groups()
     # print groups
     ret = {}
     ret['lname'] = actor[0]
-    ret['fname'] = actor[1] if len(actor)>1 else None
+    ret['fname'] = actor[1] if len(actor) > 1 else None
     ret['name_id'] = name_id
-    if (ret['name_id'] is not None):
+    if ret['name_id'] is not None:
         ret['name_id'] = roman.fromRoman(ret['name_id'].strip('()').upper())
     # print(tmpactor)
     # print(ret)
@@ -148,16 +149,16 @@ def getActor(actor):
 timers = {}
 
 
-def startTimer(name):
+def start_timer(name):
     timers[name] = time.time()
-    print '---Starting "' + name + '"'
+    print('---Starting "' + name + '"')
 
 
-def checkTimer(name):
-    print '---Checking "' + name + '" :' + readableTime(time.time() - timers[name])
+def check_timer(name):
+    print('---Checking "' + name + '" :' + readable_time(time.time() - timers[name]))
 
 
-def analyzedTime(time):
+def analyzed_time(time):
     t = {}
     t['hours'] = int(math.floor(time / 3600))
     time %= 3600
@@ -169,8 +170,8 @@ def analyzedTime(time):
     return t
 
 
-def readableTime(rTime):
-    t = analyzedTime(rTime)
+def readable_time(r_time):
+    t = analyzed_time(r_time)
     ret = str(t['hours']) + ' Hours, '
     ret += str(t['minutes']) + ' Minutes, '
     ret += str(t['seconds']) + ' Seconds and '
@@ -178,21 +179,24 @@ def readableTime(rTime):
     return ret
 
 
-def resetTable(cur, table):
+def reset_table(cur, table):
     cur.execute("TRUNCATE " + table + " CASCADE;")
     cur.execute("ALTER SEQUENCE " + table + "_id_seq RESTART WITH 1;")
 
 
 def beep(num=1):
     for i in range(0, num):
-        print "\a"
+        print("\a")
 
 
 ''' Used to read Actors from File that was created for SQL use '''
-def getTop100Actors():
+
+
+def get_top100_actors():
     actorsFile = open('../assets/TOP1000Actors.txt')
     actors = actorsFile.readline().decode("utf-8-sig").encode("utf-8").strip('()').split('),(')
     return [actor.strip("'") for actor in actors]
 
-def readFileLine(f):
-    return f.readline()#.decode('ISO 8859-1').encode('utf8')
+
+def read_file_line(f):
+    return f.readline()  # .decode('ISO 8859-1').encode('utf8')

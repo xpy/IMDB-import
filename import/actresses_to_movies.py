@@ -5,17 +5,17 @@ import functions
 import pickle
 
 fileName = 'actresses.list'
-f = open(variables.imdbFilesPath + fileName, 'r')
+f = open(variables.imdb_files_path + fileName, 'r')
 fileEnd = '-----------------------------------------------------------------------------'
 
 
-def addRole(role):
+def add_role(role):
     cur.execute(
         "INSERT INTO role (name) SELECT %s WHERE NOT EXISTS ( SELECT 1 FROM role WHERE name = %s) ",
         [role, role])
 
 
-def addMovieToActorToDB(actor, movie):
+def add_movie_to_actor_to_db(actor, movie):
     q = "INSERT INTO tmp_actor_to_movie (actor_id,movie_id,billing_position,role_id) " \
         " SELECT actor.id,movie.id,%s,role.id FROM actor" \
         " JOIN actor_name fname ON actor.fname_id = fname.id" \
@@ -27,72 +27,74 @@ def addMovieToActorToDB(actor, movie):
                     movie['year_id'], movie['roles']])
 
 
-def addActorsToMovies():
+def add_actors_to_movies():
     i = 0
-    line = functions.readFileLine(f)
-    functions.startTimer('Add Actor')
+    line = functions.read_file_line(f)
+    functions.start_timer('Add Actor')
     k = 0
     while line:
-        splitLine = [a for a in line.split('\t') if a != '']
-        actorName = splitLine[0]
-        actorNameOnly = re.sub('\s\([a-zA-Z]*\)$', '', actorName).decode('utf8').encode('iso-8859-1')
-        isTop1000 = actors.count(actorNameOnly) > 0
+        split_line = [a for a in line.split('\t') if a != '']
+        actor_name = split_line[0]
+        actor_name_only = re.sub('\s\([a-zA-Z]*\)$', '', actor_name).decode('utf8').encode('iso-8859-1')
+        is_top1000 = actors.count(actor_name_only) > 0
 
         k += 1
         if k % 10000 == 0:
-            print k
+            print(k)
 
-        if isTop1000:
-            actors.remove(actorNameOnly)
-            actor = functions.getActor(actorName)
+        if is_top1000:
+            actors.remove(actor_name_only)
+            actor = functions.get_actor(actor_name)
             print(actor)
             i += 1
             if i % 100 == 0:
-                print actor, str(i)
-            functions.checkTimer('Add Actor')
+                print(actor, str(i))
+            functions.check_timer('Add Actor')
 
-            functions.startTimer('Deleting Duplicates')
+            functions.start_timer('Deleting Duplicates')
             cur.execute("DELETE FROM tmp_actor_to_movie WHERE id NOT IN "
                         "(SELECT min(id) FROM tmp_actor_to_movie GROUP BY actor_id,movie_id)")
-            functions.checkTimer('Deleting Duplicates')
+            functions.check_timer('Deleting Duplicates')
 
-            functions.startTimer('Insert to real table')
+            functions.start_timer('Insert to real table')
             cur.execute("INSERT INTO actor_to_movie(actor_id ,movie_id,billing_position,role_id) SELECT DISTINCT "
                         "actor_id,movie_id,billing_position,role_id FROM tmp_actor_to_movie;")
-            functions.checkTimer('Insert to real table')
+            functions.check_timer('Insert to real table')
 
             cur.execute("DELETE FROM tmp_actor_to_movie")
-            functions.startTimer('Add Actor')
-            functions.checkTimer('Add all Actors')
-                # return
-            movie = functions.getMovie(splitLine[1])
-            addRole(movie['roles'])
-            addMovieToActorToDB(actor, movie)
-            line = functions.readFileLine(f)
+            functions.start_timer('Add Actor')
+            functions.check_timer('Add all Actors')
+            # return
+            movie = functions.get_movie(split_line[1])
+            add_role(movie['roles'])
+            add_movie_to_actor_to_db(actor, movie)
+            line = functions.read_file_line(f)
             while len(line) != 1:
-                splitLine = [a for a in line.split('\t') if a != '']
-                movieSplit = functions.getMovieSplit(splitLine[0])
-                if movieSplit['name'] != movie['name'] or movieSplit['year_id'] != movie['year_id']:
-                    movie = functions.getMovie(splitLine[0])
-                    addRole(movie['roles'])
-                    addMovieToActorToDB(actor, movie)
-                line = functions.readFileLine(f)
+                split_line = [a for a in line.split('\t') if a != '']
+                movie_split = functions.get_movie_split(split_line[0])
+                if movie_split['name'] != movie['name'] or movie_split['year_id'] != movie['year_id']:
+                    movie = functions.get_movie(split_line[0])
+                    add_role(movie['roles'])
+                    add_movie_to_actor_to_db(actor, movie)
+                line = functions.read_file_line(f)
             conn.commit()
-            line = functions.readFileLine(f)
-            if line.find(fileEnd) >= 0: return
+            line = functions.read_file_line(f)
+            if line.find(fileEnd) >= 0:
+                return
         else:
             while len(line) != 1:
-                line = functions.readFileLine(f)
-            line = functions.readFileLine(f)
-            if line.find(fileEnd) >= 0: return
+                line = functions.read_file_line(f)
+            line = functions.read_file_line(f)
+            if line.find(fileEnd) >= 0:
+                return
 
 
-functions.jumpToLineWithString(f, 'THE ACTRESSES LIST')
-functions.jumpLines(f, 4)
+functions.jump_to_line_with_string(f, 'THE ACTRESSES LIST')
+functions.jump_lines(f, 4)
 # 236
 # functions.jumpLines(f,  2117917 -240 )
 
-conn = psycopg2.connect(variables.postgresCredentials)
+conn = psycopg2.connect(variables.postgres_credentials)
 cur = conn.cursor()
 
 ''' Insert top 1000 Actors into a List '''
@@ -104,9 +106,9 @@ cur.execute("SET transform_null_equals TO ON")
 cur.execute("CREATE TEMP TABLE tmp_actor_to_movie"
             "(id serial ,actor_id int,movie_id int,billing_position int,role_id integer);")
 
-functions.startTimer('Add all Actors')
-addActorsToMovies()
-functions.checkTimer('Add all Actors')
+functions.start_timer('Add all Actors')
+add_actors_to_movies()
+functions.check_timer('Add all Actors')
 
 """
 cur.execute("select * from tmp_actor_to_movie")
@@ -116,6 +118,6 @@ for row in rows:
 
 """
 
-functions.startTimer('Commit to DB')
+functions.start_timer('Commit to DB')
 conn.commit()
-functions.checkTimer('Commit to DB')
+functions.check_timer('Commit to DB')
