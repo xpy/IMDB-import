@@ -98,7 +98,11 @@ def get_movie_split(string, p=False):
         k += 1
     ret = {'name': ' '.join(movieName).replace('"', ''), 'year_id': None,
            'year': None}
-    year_id = string[k].replace('(', '').replace(')', '')
+    try:
+        year_id = string[k].replace('(', '').replace(')', '')
+    except IndexError:
+        year_id = None
+        print('String:', string, 'k', k)
     if year_id == '????':
         year_id = None
     if year_id is not None:

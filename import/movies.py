@@ -9,6 +9,8 @@ fileEnd = '---------------------------------------------------------------------
 
 
 def insert_movie(movie):
+    # if movie['year_id'] is not None:
+    #     print([movie['name'], movie['year'], movie['year_id']])
     cur.execute(
         "INSERT INTO tmp_movie (name,year,year_id) SELECT %s,%s,%s ",
         [movie['name'], movie['year'], movie['year_id']])
