@@ -35,7 +35,7 @@ def add_actors_to_movies():
     while line:
         split_line = [a for a in line.split('\t') if a != '']
         actor_name = split_line[0]
-        actor_name_only = re.sub('\s\([a-zA-Z]*\)$', '', actor_name).decode('utf8').encode('iso-8859-1')
+        actor_name_only = re.sub('\s\([a-zA-Z]*\)$', '', actor_name)
         is_top1000 = actors.count(actor_name_only) > 0
 
         k += 1
@@ -98,7 +98,7 @@ conn = psycopg2.connect(variables.postgres_credentials)
 cur = conn.cursor()
 
 ''' Insert top 1000 Actors into a List '''
-actors = pickle.load(open('../assets/top1000Actors_serialized.txt', 'r'))
+actors = pickle.load(open('../assets/top1000Actors_serialized.txt', 'rb'))
 # functions.resetTable(cur, 'role')
 # functions.resetTable(cur, 'actor_to_movie')
 

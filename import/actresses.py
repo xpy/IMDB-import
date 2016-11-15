@@ -59,7 +59,7 @@ conn = psycopg2.connect(variables.postgres_credentials)
 cur = conn.cursor()
 
 ''' Insert top 1000 Actors into a List '''
-actors = [a for a in pickle.load(codecs.open('../assets/top1000Actors_serialized.txt', 'rb'))]
+actors = pickle.load(codecs.open('../assets/top1000Actors_serialized.txt', 'rb'))
 print(actors)
 # functions.resetTable(cur,'actor')
 # functions.resetTable(cur,'actor_name')

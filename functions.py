@@ -1,6 +1,7 @@
 import re
 import time
 import math
+import sys
 import roman
 
 
@@ -84,8 +85,8 @@ def get_movie(string):
 
     # print(movie)
     # str = re.sub(movieRegEx, '', str)
-
-    return dict(movie.items() + get_movie_split(string).items())
+    movie.update(get_movie_split(string).items())
+    return movie
 
 
 def get_movie_split(string, p=False):
@@ -203,4 +204,9 @@ def get_top100_actors():
 
 
 def read_file_line(f):
-    return f.readline()  # .decode('ISO 8859-1').encode('utf8')
+    try:
+        return f.readline()  # .decode('ISO 8859-1').encode('utf8')
+    except:
+        print(print(sys.exc_info()))
+        print("NTI ZNTO MPOUTZO")
+        return []
