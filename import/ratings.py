@@ -20,8 +20,8 @@ def add_ratings():
             i += 1
             if i % 10000 == 0:
                 print(rating + ' ' + str(i))
-            cur.execute("UPDATE movie SET rating = %s, votes = %s WHERE name = %s and year_id = %s",
-                        [final_rating['rating'], final_rating['votes'], movie['name'], str(movie['year_id'])])
+            cur.execute("UPDATE movie SET rating = %s, votes = %s WHERE name = %s and year = %s and year_id = %s",
+                        [final_rating['rating'], final_rating['votes'], movie['name'], movie['year'], movie['year_id']])
         line = f.readline()
         while line != '' and line.find(fileEnd) < 0 and (
                         len(line) == 1 or line[0] != ' '):
@@ -36,6 +36,8 @@ functions.jump_lines(f, 0)
 
 conn = psycopg2.connect(variables.postgres_credentials)
 cur = conn.cursor()
+cur.execute("SET transform_null_equals TO ON")
+
 functions.start_timer('Add ratings')
 add_ratings()
 functions.check_timer('Add ratings')

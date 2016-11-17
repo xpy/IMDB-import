@@ -22,9 +22,9 @@ def add_movie_to_actor_to_db(actor, movie):
         " JOIN actor_name lname ON lname.id = actor.lname_id" \
         " ,movie, role WHERE " \
         " fname.name = %s AND lname.name = %s AND actor.name_index = %s AND actor.gender = 'f' " \
-        " AND movie.name = %s  AND movie.year_id = %s AND role.name = %s ;"
+        " AND movie.name = %s  AND movie.year = %s AND movie.year_id = %s AND role.name = %s ;"
     cur.execute(q, [movie['billingPosition'], actor['fname'], actor['lname'], actor['name_id'], movie['name'],
-                    movie['year_id'], movie['roles']])
+                    movie['year'], movie['year_id'], movie['roles']])
 
 
 def add_actors_to_movies():
