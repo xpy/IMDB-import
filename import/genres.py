@@ -25,11 +25,11 @@ class GenresImport:
             line = functions.read_file_line(cls.f).split(' ')
 
     @classmethod
-    def run(cls):
+    def run(cls, conn):
         functions.jump_to_line_with_string(cls.f, 'Breakdown of the main genres and the number of times they appear :')
         functions.jump_lines(cls.f, 1)
 
-        cls.conn = psycopg2.connect(variables.postgres_credentials)
+        cls.conn = conn
         cls.cur = cls.conn.cursor()
 
         functions.reset_table(cls.cur, 'genre')

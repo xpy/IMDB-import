@@ -58,15 +58,15 @@ class ActressesImport:
                 line = cls.f.readline()
 
     @classmethod
-    def run(cls):
+    def run(cls, conn):
         functions.jump_to_line_with_string(cls.f, 'THE ACTRESSES LIST')
         functions.jump_lines(cls.f, 4)
 
-        cls.conn = psycopg2.connect(variables.postgres_credentials)
+        cls.conn = conn
         cls.cur = cls.conn.cursor()
 
         ''' Insert top 1000 Actors into a List '''
-        cls.actors = pickle.load(codecs.open('../assets/top1000Actors_serialized.txt', 'rb'))
+        cls.actors = pickle.load(codecs.open('./assets/top1000Actors_serialized.txt', 'rb'))
         print(cls.actors)
         # functions.resetTable(cur,'actor')
         # functions.resetTable(cur,'actor_name')

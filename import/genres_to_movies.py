@@ -51,11 +51,11 @@ class GenresToMoviesImport:
             line = functions.read_file_line(cls.f).split('\t')
 
     @classmethod
-    def run(cls):
+    def run(cls, conn):
         functions.jump_to_line_with_string(cls.f, '8: THE GENRES LIST')
         functions.jump_lines(cls.f, 2)
 
-        cls.conn = psycopg2.connect(variables.postgres_credentials)
+        cls.conn = conn
         cls.cur = cls.conn.cursor()
 
         functions.reset_table(cls.cur, 'genre_to_movie')

@@ -37,11 +37,11 @@ class RatingsImport:
                 return
 
     @classmethod
-    def run(cls):
+    def run(cls, conn):
         functions.jump_to_line_with_string(f, 'New  Distribution  Votes  Rank  Title')
         functions.jump_lines(f, 0)
 
-        cls.conn = psycopg2.connect(variables.postgres_credentials)
+        cls.conn = conn
         cls.cur = cls.conn.cursor()
         cls.cur.execute("SET transform_null_equals TO ON")
 

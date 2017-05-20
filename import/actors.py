@@ -27,7 +27,7 @@ class ActorImport:
         cls.insert_name(actor['fname'])
         cls.insert_name(actor['lname'])
         cls.cur.execute("INSERT INTO tmp_actor (fname_id,lname_id,name_index,gender) SELECT fname.id,lname.id,%s,'m'"
-                         " FROM actor_name fname, actor_name lname where fname.name = %s and lname.name = %s",
+                        " FROM actor_name fname, actor_name lname where fname.name = %s and lname.name = %s",
                         [actor['name_id'], actor['fname'], actor['lname']])
 
     @classmethod
@@ -60,15 +60,15 @@ class ActorImport:
                 line = cls.f.readline()
 
     @classmethod
-    def run(cls):
+    def run(cls, conn):
         functions.jump_to_line_with_string(cls.f, 'THE ACTORS LIST')
         functions.jump_lines(cls.f, 4)
 
-        cls.conn = psycopg2.connect(variables.postgres_credentials)
+        cls.conn = conn
         cls.cur = cls.conn.cursor()
 
         ''' Insert top 1000 Actors into a List '''
-        cls.actors = pickle.load(codecs.open('../assets/top1000Actors_serialized.txt', 'rb'))
+        cls.actors = pickle.load(codecs.open('./assets/top1000Actors_serialized.txt', 'rb'))
         print(cls.actors)
         functions.reset_table(cls.cur, 'actor')
         functions.reset_table(cls.cur, 'actor_name')

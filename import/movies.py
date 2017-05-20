@@ -42,13 +42,13 @@ class MoviesImport:
                 return
 
     @classmethod
-    def run(cls):
+    def run(cls, conn):
         functions.jump_to_line_with_string(cls.f, '===========')
         functions.jump_lines(cls.f, 1)
 
         functions.jump_lines(cls.f, 0)
 
-        cls.conn = psycopg2.connect(variables.postgres_credentials)
+        cls.conn = conn
         cls.cur = cls.conn.cursor()
 
         functions.reset_table(cls.cur, 'movie')
