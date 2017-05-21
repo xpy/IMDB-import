@@ -1,8 +1,8 @@
--- View: public."VW_movie"
+-- View: "VW_movie"
 
-DROP VIEW IF EXISTS public."VW_movie";
+DROP VIEW IF EXISTS "VW_movie";
 
-CREATE OR REPLACE VIEW public."VW_movie" AS
+CREATE OR REPLACE VIEW "VW_movie" AS
  SELECT DISTINCT movie.id,
     movie.name,
     movie.year,
@@ -18,5 +18,5 @@ CREATE OR REPLACE VIEW public."VW_movie" AS
              JOIN genre ON genre.id = genre_to_movie.genre_id
           WHERE movie.id = genre_to_movie.movie_id AND genre.is_movie_genre = true));
 
-ALTER TABLE public."VW_movie"
+ALTER TABLE "VW_movie"
   OWNER TO postgres;

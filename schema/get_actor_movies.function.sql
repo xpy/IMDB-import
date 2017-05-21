@@ -1,8 +1,8 @@
--- Function: public."CF_get_actor_movies"(integer)
+-- Function: "CF_get_actor_movies"(integer)
 
-DROP FUNCTION IF EXISTS public."CF_get_actor_movies"(integer);
+DROP FUNCTION IF EXISTS "CF_get_actor_movies"(integer);
 
-CREATE OR REPLACE FUNCTION public."CF_get_actor_movies"(IN _actor_id integer)
+CREATE OR REPLACE FUNCTION "CF_get_actor_movies"(IN _actor_id integer)
   RETURNS TABLE(id integer, name text, year integer, year_id smallint, rating double precision, votes integer, billing_position integer, roles text) AS
 $BODY$SELECT
 movie.id id,
@@ -24,5 +24,5 @@ $BODY$
   LANGUAGE sql VOLATILE
   COST 100
   ROWS 1000;
-ALTER FUNCTION public."CF_get_actor_movies"(integer)
+ALTER FUNCTION "CF_get_actor_movies"(integer)
   OWNER TO postgres;

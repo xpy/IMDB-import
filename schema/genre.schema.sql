@@ -1,21 +1,21 @@
--- Table: public.genre
+-- Table: genre
 
-DROP TABLE IF EXISTS public.genre CASCADE;
+DROP TABLE IF EXISTS genre CASCADE;
 
--- Sequence: public.genre_id_seq
+-- Sequence: genre_id_seq
 
-DROP SEQUENCE IF EXISTS public.genre_id_seq;
+DROP SEQUENCE IF EXISTS genre_id_seq;
 
-CREATE SEQUENCE public.genre_id_seq
+CREATE SEQUENCE genre_id_seq
   INCREMENT 1
   MINVALUE 1
   MAXVALUE 9223372036854775807
   START 34
   CACHE 1;
-ALTER TABLE public.genre_id_seq
+ALTER TABLE genre_id_seq
   OWNER TO postgres;
 
-CREATE TABLE public.genre
+CREATE TABLE genre
 (
   id smallint NOT NULL DEFAULT nextval('genre_id_seq'::regclass),
   name text,
@@ -27,9 +27,9 @@ WITH (
   OIDS=FALSE
 );
 
-ALTER TABLE public.genre
+ALTER TABLE genre
   OWNER TO postgres;
-COMMENT ON TABLE public.genre
+COMMENT ON TABLE genre
   IS 'UPDATE genre set is_movie_genre = true where name in (
 ''Action'',''Comedy'',
 ''Fantasy'',''Musical'',
@@ -44,22 +44,22 @@ COMMENT ON TABLE public.genre
 )
 ';
 
--- Index: public."IX_genre__id"
+-- Index: "IX_genre__id"
 
-DROP INDEX IF EXISTS public."IX_genre__id";
+DROP INDEX IF EXISTS "IX_genre__id";
 
 CREATE UNIQUE INDEX "IX_genre__id"
-  ON public.genre
+  ON genre
   USING btree
   (id);
 
--- Index: public."IX_genre__name"
+-- Index: "IX_genre__name"
 
-DROP INDEX IF EXISTS public."IX_genre__name";
+DROP INDEX IF EXISTS "IX_genre__name";
 
 CREATE UNIQUE INDEX "IX_genre__name"
-  ON public.genre
+  ON genre
   USING btree
   (name COLLATE pg_catalog."default");
-ALTER TABLE public.genre CLUSTER ON "IX_genre__name";
+ALTER TABLE genre CLUSTER ON "IX_genre__name";
 

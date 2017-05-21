@@ -1,7 +1,5 @@
-import psycopg2
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-import variables
 from functions import *
 
 directory = "schema/"
@@ -10,9 +8,6 @@ directory = "schema/"
 def create_schema(conn):
     conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     cur = conn.cursor()
-    # database
-    executeScriptsFromFile(directory + "create_database.sql", cur)
-    # conn.set_isolation_level(ISOLATION_LEVEL_READ_COMMITTED)
 
     # Main tables
     executeScriptsFromFile(directory + "actor_name.schema.sql", cur)
