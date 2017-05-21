@@ -127,6 +127,8 @@ class ActorsToMoviesImport:
         cls.add_actors_to_movies()
         functions.check_timer('Add all Actors')
 
+        cls.cur.execute("DROP TABLE tmp_actor_to_movie CASCADE")
+
         """
         cls.cur.execute("select * from tmp_actor_to_movie")
         rows = cls.cur.fetchall()

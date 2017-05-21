@@ -87,6 +87,8 @@ class ActorImport:
             "(SELECT DISTINCT fname_id,lname_id,name_index,gender FROM tmp_actor ORDER BY fname_id)")
         functions.check_timer('Insert to real table')
 
+        cls.cur.execute("DROP TABLE tmp_actor CASCADE")
+
         functions.start_timer('Commit to DB')
         cls.conn.commit()
         functions.check_timer('Commit to DB')
