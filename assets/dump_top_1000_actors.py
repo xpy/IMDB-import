@@ -1,7 +1,3 @@
-import re
-import psycopg2
-import variables
-import functions
 import pickle
 
 actors = ['De Niro, Robert', 'Nicholson, Jack', 'DiCaprio, Leonardo', 'Day-Lewis, Daniel', 'Hanks, Tom',

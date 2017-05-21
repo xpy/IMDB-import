@@ -2,6 +2,10 @@ import re
 import time
 import math
 import sys
+
+from multiprocessing import Process
+from psycopg2._psycopg import OperationalError, ProgrammingError, InternalError
+
 import roman
 
 
@@ -210,3 +214,38 @@ def read_file_line(f):
         print(print(sys.exc_info()))
         print("NTI ZNTO MPOUTZO")
         return []
+
+
+def executeScriptsFromFile(filename, cur):
+    # Open and read the file as a single buffer
+    fd = open(filename, 'r')
+    sqlFile = fd.read()
+    fd.close()
+
+    # all SQL commands (split on ';')
+    sqlCommands = sqlFile.split(';')
+
+    # Execute every command from the input file
+    for command in sqlCommands:
+        # This will skip and report errors
+        # For example, if the tables do not yet exist, this will skip over
+        # the DROP TABLE commands
+        try:
+            cur.execute(command)
+        except OperationalError as e:
+            print("Command skipped: ", str(e), command)
+        except ProgrammingError as e:
+            if command and command.replace('\n', '') != '':
+                print("Command skipped: ", str(e), command)
+        # except InternalError as e:
+        #     print("Command skipped: ", str(e))
+
+
+def runInParallel(*fns):
+  proc = []
+  for fn in fns:
+    p = Process(target=fn)
+    p.start()
+    proc.append(p)
+  for p in proc:
+    p.join()
