@@ -1,52 +1,53 @@
--- Table: movie
+-- Table: public.movie
 
--- DROP TABLE movie;
+DROP TABLE IF EXISTS public.movie CASCADE;
 
-CREATE TABLE movie
+-- Sequence: public.movie_id_seq
+
+DROP SEQUENCE IF EXISTS public.movie_id_seq;
+
+CREATE SEQUENCE public.movie_id_seq
+  INCREMENT 1
+  MINVALUE 1
+  MAXVALUE 9223372036854775807
+  START 1424628
+  CACHE 1;
+ALTER TABLE public.movie_id_seq
+  OWNER TO postgres;
+
+CREATE TABLE public.movie
 (
-  id serial NOT NULL,
+  id integer NOT NULL DEFAULT nextval('movie_id_seq'::regclass),
   name text,
   year integer,
-  year_id text,
+  year_id smallint,
   rating double precision,
   votes integer,
   CONSTRAINT movie_id PRIMARY KEY (id),
-  CONSTRAINT "UC_movie__name__year_id" UNIQUE (name, year_id)
+  CONSTRAINT "UC_movie__name__year__year_id" UNIQUE (name, year, year_id)
 )
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE movie
+ALTER TABLE public.movie
   OWNER TO postgres;
 
--- Index: "IX_movie__id"
+-- Index: public."IX_movie__id"
 
--- DROP INDEX "IX_movie__id";
+DROP INDEX IF EXISTS public."IX_movie__id";
 
 CREATE UNIQUE INDEX "IX_movie__id"
-  ON movie
+  ON public.movie
   USING btree
   (id);
-ALTER TABLE movie CLUSTER ON "IX_movie__id";
+ALTER TABLE public.movie CLUSTER ON "IX_movie__id";
 
--- Index: "IX_movie__name__year_id"
+-- Index: public."IX_movie__name__year__year_id"
 
--- DROP INDEX "IX_movie__name__year_id";
+DROP INDEX IF EXISTS public."IX_movie__name__year__year_id";
 
-CREATE UNIQUE INDEX "IX_movie__name__year_id"
-  ON movie
+CREATE UNIQUE INDEX "IX_movie__name__year__year_id"
+  ON public.movie
   USING btree
-  (name COLLATE pg_catalog."default", year_id COLLATE pg_catalog."default");
-
-
--- Rule: "RL_movie__insert_duplicate" ON movie
-
--- DROP RULE "RL_movie__insert_duplicate" ON movie;
-
-CREATE OR REPLACE RULE "RL_movie__insert_duplicate" AS
-    ON INSERT TO movie
-   WHERE (EXISTS ( SELECT 1
-           FROM movie
-          WHERE movie.name = new.name AND movie.year_id = new.year_id)) DO INSTEAD NOTHING;
-ALTER TABLE movie DISABLE RULE "RL_movie__insert_duplicate";
+  (name COLLATE pg_catalog."default", year, year_id);
 

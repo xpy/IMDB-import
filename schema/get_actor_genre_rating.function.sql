@@ -1,8 +1,8 @@
--- Function: "CF_get_actor_genre_rating"(integer)
+-- Function: public."CF_get_actor_genre_rating"(integer)
 
--- DROP FUNCTION "CF_get_actor_genre_rating"(integer);
+DROP FUNCTION IF EXISTS public."CF_get_actor_genre_rating"(integer);
 
-CREATE OR REPLACE FUNCTION "CF_get_actor_genre_rating"(IN _actor_id integer)
+CREATE OR REPLACE FUNCTION public."CF_get_actor_genre_rating"(IN _actor_id integer)
   RETURNS TABLE(name text, rating double precision, cnt bigint) AS
 $BODY$SELECT
 genre.name,
@@ -26,5 +26,5 @@ GROUP BY genre.name$BODY$
   LANGUAGE sql VOLATILE
   COST 100
   ROWS 1000;
-ALTER FUNCTION "CF_get_actor_genre_rating"(integer)
+ALTER FUNCTION public."CF_get_actor_genre_rating"(integer)
   OWNER TO postgres;
