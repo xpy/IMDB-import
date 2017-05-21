@@ -33,7 +33,8 @@ AND movie.id in (
 TRUNCATE  TABLE light.role;
 
 INSERT INTO light.role (id,name)
-SELECT id,name FROM public.role;
+SELECT role.id,role.name FROM public.role JOIN public.actor_to_movie
+ON actor_to_movie.role_id = role.id JOIN light.movie ON actor_to_movie.movie_id = movie.id;
 
 -- INSERT ACTOR TO MOVIE
 --TRUNCATE TABLE light.actor_to_movie;
