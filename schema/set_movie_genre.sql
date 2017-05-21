@@ -9,5 +9,6 @@ UPDATE genre set is_movie_genre = true where name in (
 'Film-Noir','Romance',
 'War','Animation',
 'Drama','Horror',
-'Sci-Fi','Western'
+'Sci-Fi','Western',
+'Biography'
 );
