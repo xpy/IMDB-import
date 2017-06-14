@@ -231,7 +231,7 @@ def executeScriptsFromFile(filename, cur):
         # For example, if the tables do not yet exist, this will skip over
         # the DROP TABLE commands
         try:
-            cur.execute(command)
+            cur.execute(command+';')
         except OperationalError as e:
             print("Command skipped: ", str(e), command)
         except ProgrammingError as e:

@@ -40,7 +40,8 @@ COMMENT ON TABLE genre
 ''Film-Noir'',''Romance'',
 ''War'',''Animation'',
 ''Drama'',''Horror'',
-''Sci-Fi'',''Western''
+''Sci-Fi'',''Western'',
+''Sport''
 )
 ';
 
