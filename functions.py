@@ -71,6 +71,8 @@ def getMovie(str):
 
 
 def get_movie(string):
+    if string[0] == '"' or string.find('(VG)') > -1:
+        return None
     debug = False
     if debug:
         print("Starting String: " + string)
@@ -95,12 +97,16 @@ def get_movie(string):
 
 def get_movie_split(string, p=False):
     # print(str)
+    if string.find('(VG)') > -1:
+        return None
     string = string.split()
     movieName = [string[0]]
     k = 1
     while k < len(string) and re.match('\(([0-9]{4}|[\?]{4})+(\/[IVXC]*)*\)', string[k]) is None:
         movieName.append(string[k])
         k += 1
+    if ' '.join(movieName)[0] == '"':
+        return None
     ret = {'name': ' '.join(movieName).replace('"', ''), 'year_id': None,
            'year': None}
     try:
@@ -231,21 +237,21 @@ def executeScriptsFromFile(filename, cur):
         # For example, if the tables do not yet exist, this will skip over
         # the DROP TABLE commands
         try:
-            cur.execute(command+';')
+            cur.execute(command + ';')
         except OperationalError as e:
             print("Command skipped: ", str(e), command)
         except ProgrammingError as e:
             if command and command.replace('\n', '') != '':
                 print("Command skipped: ", str(e), command)
-        # except InternalError as e:
-        #     print("Command skipped: ", str(e))
+                # except InternalError as e:
+                #     print("Command skipped: ", str(e))
 
 
 def runInParallel(*fns):
-  proc = []
-  for fn in fns:
-    p = Process(target=fn)
-    p.start()
-    proc.append(p)
-  for p in proc:
-    p.join()
+    proc = []
+    for fn in fns:
+        p = Process(target=fn)
+        p.start()
+        proc.append(p)
+    for p in proc:
+        p.join()

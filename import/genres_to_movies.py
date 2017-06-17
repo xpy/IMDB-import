@@ -41,12 +41,12 @@ class GenresToMoviesImport:
                 # print(movie, genre, i)
                 if i % 10000 == 0:
                     print(movie, genre, i)
-                if movie != prev_movie or genre != prev_genre:
+                if movie and (movie != prev_movie or genre != prev_genre):
                     cls.insert_genre_to_movie(genre, movie)
                     cls.conn.commit()
-                    i += 1
-                    prev_movie = movie
-                    prev_genre = genre
+                i += 1
+                prev_movie = movie
+                prev_genre = genre
             prev_movie_string = movie_string
             line = functions.read_file_line(cls.f).split('\t')
 

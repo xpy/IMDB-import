@@ -7,7 +7,7 @@ import variables
 
 directory = "schema/"
 
-conn = psycopg2.connect(variables.postgres_credentials_new)
+conn = psycopg2.connect(variables.postgres_credentials)
 
 conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
 cur = conn.cursor()

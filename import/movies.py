@@ -22,19 +22,25 @@ class MoviesImport:
     @classmethod
     def add_movies(cls):
         i = 0
+        k = 0
         line = functions.read_file_line(cls.f)
         prev_movie = {'name': None, 'year': None, 'year_id': None}
         while line:
+            if line[0] is '"':
+                k += 1
+                if k % 100000 == 0:
+                    print("Skipping " + str(k) + " lines")
+                line = functions.read_file_line(cls.f)
+                continue
             movie = functions.get_movie_split(line)
             if movie is not None:
                 i += 1
                 if i % 10000 == 0:
                     print(movie['name'] + ' - ' + str(i))
-            if prev_movie['name'] != movie['name'] or prev_movie['year'] != movie['year'] or prev_movie['year_id'] != \
-                    movie[
-                        'year_id']:
-                cls.insert_movie(movie)
-                prev_movie = movie
+                if prev_movie['name'] != movie['name'] or prev_movie['year'] != movie['year'] or prev_movie['year_id'] != \
+                        movie['year_id']:
+                    cls.insert_movie(movie)
+                    prev_movie = movie
             line = functions.read_file_line(cls.f)
             while line != '' and (len(line) == 1 or line[0] == '\t'):
                 line = functions.read_file_line(cls.f)

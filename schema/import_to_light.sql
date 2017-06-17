@@ -1,7 +1,7 @@
 DO $$ DECLARE _votes integer;
 
 BEGIN
-_votes := 10000;
+_votes := 1000;
 
 
 -- INSERT ACTOR NAMES
@@ -23,17 +23,23 @@ INSERT INTO light.movie
 SELECT id, name, year, year_id, rating, votes
 FROM public."VW_movie" movie WHERE movie.rating is not null and movie.votes > _votes
 AND movie.id in (
-    SELECT movie_id FROM public.actor_to_movie WHERE actor_id IN
+    SELECT movie_id FROM public.actor_to_movie
+    JOIN public.role ON role_id = role.id AND (role.name NOT LIKE 'Himself%' AND role.name NOT LIKE 'Herself%'
+    AND role.name NOT LIKE 'Narator' AND role.name NOT LIKE 'Narrator'
+    )
+    WHERE actor_id IN
     (
         SELECT id from public.actor
     )
+    AND billing_position IS NOT NULL
+
 );
 
 -- INSERT ROLES
 TRUNCATE  TABLE light.role;
 
 INSERT INTO light.role (id,name)
-SELECT role.id,role.name FROM public.role JOIN public.actor_to_movie
+SELECT DISTINCT role.id,role.name FROM public.role JOIN public.actor_to_movie
 ON actor_to_movie.role_id = role.id JOIN light.movie ON actor_to_movie.movie_id = movie.id;
 
 -- INSERT ACTOR TO MOVIE
@@ -44,7 +50,8 @@ SELECT DISTINCT actor_to_movie.id,actor_to_movie.actor_id,actor_to_movie.movie_i
 FROM
 light.actor actor
     JOIN public.actor_to_movie actor_to_movie ON actor.id = actor_id
-    JOIN light.movie movie on movie.id = movie_id;
+    JOIN light.movie movie on movie.id = movie_id
+WHERE billing_position IS NOT NULL;
 
 -- INSERT GENRES
 TRUNCATE TABLE light.genre CASCADE;

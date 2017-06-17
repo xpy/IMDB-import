@@ -72,16 +72,19 @@ class ActressesToMoviesImport:
                 functions.check_timer('Add all Actors')
                 # return
                 movie = functions.get_movie(split_line[1])
-                cls.add_role(movie['roles'])
-                cls.add_movie_to_actor_to_db(actor, movie)
+                if movie:
+                    cls.add_role(movie['roles'])
+                    cls.add_movie_to_actor_to_db(actor, movie)
                 line = functions.read_file_line(cls.f)
                 while len(line) != 1:
                     split_line = [a for a in line.split('\t') if a != '']
                     movie_split = functions.get_movie_split(split_line[0])
-                    if movie_split['name'] != movie['name'] or movie_split['year_id'] != movie['year_id']:
+                    if movie_split and movie and (
+                            movie_split['name'] != movie['name'] or movie_split['year_id'] != movie['year_id']):
                         movie = functions.get_movie(split_line[0])
-                        cls.add_role(movie['roles'])
-                        cls.add_movie_to_actor_to_db(actor, movie)
+                        if movie:
+                            cls.add_role(movie['roles'])
+                            cls.add_movie_to_actor_to_db(actor, movie)
                     line = functions.read_file_line(cls.f)
                 cls.conn.commit()
                 line = functions.read_file_line(cls.f)
